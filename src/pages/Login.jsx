@@ -45,7 +45,7 @@ export default function Login() {
             if (loginResponse.status) {
                 localStorage.setItem("token", loginResponse.data.token);
 
-                navigate("/");
+                navigate("/homelogin");
             }
         } catch (err) {
             console.log(err);
