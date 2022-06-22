@@ -1,0 +1,46 @@
+.owl-carousel .item img {
+    height: 288px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.owl-carousel .item {
+    opacity: 0.4;
+    transition: .4s ease all;
+    transform: scale(0.8);
+}
+
+@media(max-width: 1000px) {
+    .item {
+        margin: 0;
+        transform: scale(.9)
+    }
+}
+
+.active .item {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.owl-item {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+}
+
+.owl-carousel:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10%;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -4%;
+    pointer-events: none;
+    background-size: 100% auto;
+}
+
+.owl-controls {
+    position: absolute;
+    margin-top: 200px;
+}
