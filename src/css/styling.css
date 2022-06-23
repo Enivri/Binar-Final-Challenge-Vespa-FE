@@ -1,8 +1,6 @@
-/* navbar */
 .na2{
 	margin-left: 160px;
 }
-
 .na3 {
 	background:linear-gradient(to bottom, #7126B5 5%, #7126B5 100%);
 	background-color:#7126B5;
@@ -17,71 +15,56 @@
 	margin-left: 500px;
 	border:none;
 }
-
 .na3:hover {
 	background:linear-gradient(to bottom, #653096 5%, #653096 100%);
 	background-color:#653096;
 }
-
 .na3:active {
 	position:relative;
 	top:1px;
 }
-
 .info1{
 	margin-left: 290px;
 	font-weight: bold;
 }
-
-/* Container Arrow*/
 .arrow2{
 	color: black;
 	font-size: 25px;
 	margin-left: -100px;
 }
-
-/* search Navbar*/
 .search2{
 	padding-left: 20px;
 	font-size: 20px;
 	border: none;
 	background-color: #EEEEEE;
 }
-
 .search1{
 	font-size: 20px;
 	border: none;
 	background-color: #EEEEEE;
 }
-
-
 .container div .info2{
 	display:none;
 }
-
 .container div .info3{
 	display:none;
 }
-
 .buttonCamera {
 	overflow: hidden;
 	position: relative;
 }
-
 .formCamera {
 	position: absolute;
 	transform: scale(5);
 	opacity: 0;
 }
-
 .box {
 	width: 100px;
 	height: 35px;
 	background-color: #4B1979;
 	border: none;
   }
-
-  .box1 {
+.box1 {
 	width: 100px;
 	height: 100px;
 	margin-left: 40%;
@@ -89,8 +72,6 @@
 	border: none;
 	border-radius: 12px;
   }
-
-  /* infoProduct */
   .box2 {
 	width: 100px;
 	height: 100px;
@@ -98,19 +79,13 @@
 	background-color: #ffffff;
 	border-color: #D0D0D0;
   }
-/* infoproducts */
-
-
   .camera{
 	color: #7126B5;
-	
   }
-
   .border1{
 	border-radius: 500px;
 	border: none;
   }
-
   .myButton6 {
 	box-shadow:inset 0px 1px 0px 0px #7126B5;
 	background:linear-gradient(to bottom, #7126B5 5%, #7126B5 100%);
@@ -134,7 +109,6 @@
 	position:relative;
 	top:1px;
 }
-/*Lengkapi Detail Produk */
 .myButton7 {
 	border-radius:16px;
 	border:2px solid #7126B5;
@@ -147,11 +121,8 @@
 	text-decoration:none;
 	background-color:#ffffff;
 	text-shadow:0px 1px 0px #7126B5;
-}
-/*Lengkapi Detail Produk */
-    
+} 
 @media (max-width: 1023px) {
-	/* Lengkapi Info akun */
     .na1 {
       display: none; 
     }
@@ -162,7 +133,6 @@
 	.info1 {
 		display: block;
 	  }
-
 	  .container div .info2{
 		font-weight: bold;
 		padding-bottom: 5%;
@@ -172,11 +142,9 @@
 	  .arrow2{
 		position: absolute;
 	  }
-
 	  .border1{
 		margin-top: 15px;
-	  }
-		
+	  }	
 	  .container div .info3{
 		font-weight: bold;
 		padding-bottom: 5%;

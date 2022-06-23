@@ -15,7 +15,7 @@ import { selectUser } from "../slices/userSlice";
 import { FiArrowLeft } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
 import axios from "axios";
-import "../css/mainRio.css";
+import "../css/styling.css";
 
 function InfoProduct() {
   const navigate = useNavigate();

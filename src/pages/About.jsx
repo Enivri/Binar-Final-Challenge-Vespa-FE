@@ -3,7 +3,7 @@ import { Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
-import "../css/mainRio.css";
+import "../css/styling.css";
 
 function About() {
   const navigate = useNavigate();
