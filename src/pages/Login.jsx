@@ -1,22 +1,14 @@
 import { useRef, useState } from "react";
-import { Form, Button, Alert, Row, Container, Col, } from "react-bootstrap";
+import { Form, Row, Col, Container, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/style.css"
-import PICT1 from '../images/login.png';
+// import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import "../css/login.css";
+
 
 export default function Login() {
+
     const navigate = useNavigate();
-
-    const styleLabel = {
-        borderRadius: '10px',
-    };
-
-    const styleLink = {
-        textDecoration: 'none',
-        color: '#7126B5',
-        fontWeight: 'bold'
-    }
 
     const emailField = useRef("");
     const passwordField = useRef("");
@@ -36,7 +28,7 @@ export default function Login() {
             };
 
             const loginRequest = await axios.post(
-                "http://localhost:2000/v1/login",
+                "http://localhost:8888/auth/login",
                 userToLoginPayload
             );
 
@@ -45,7 +37,7 @@ export default function Login() {
             if (loginResponse.status) {
                 localStorage.setItem("token", loginResponse.data.token);
 
-                navigate("/homelogin");
+                navigate("/about");
             }
         } catch (err) {
             console.log(err);
@@ -57,49 +49,55 @@ export default function Login() {
             });
         }
     };
+    const styleLabel = {
+        borderRadius: '10px',
+    };
+
+    const styleLink = {
+        textDecoration: 'none',
+        color: '#7126B5',
+        fontWeight: 'bold',
+    }
+
 
 
     return (
-        <Container fluid="true">
-            <Row >
-                <Col className="login-left">
-                    <img src={PICT1} alt="Second Hand" width="100%" height="100%" />
-                </Col>
-                <Col>
-                    <div className="login-right">
-                        <h1 className="mb-3">Masuk</h1>
-                        <Form onSubmit={onLogin}>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    ref={emailField}
-                                    placeholder="Masukkan Email"
-                                    style={styleLabel}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    ref={passwordField}
-                                    placeholder="Masukkan Password"
-                                    style={styleLabel}
-                                />
-                            </Form.Group>
-                            {errorResponse.isError && (
-                                <Alert variant="danger">{errorResponse.message}</Alert>
-                            )}
-                            <Button style={styleLabel} className="w-100" type="submit">
-                                Masuk
-                            </Button>
-                            <p>
-                                Belum punya akun?  <Link style={styleLink} to="/register">Daftar di sini</Link>
-                            </p>
-                        </Form>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
+        <Row>
+            <Col className="register-left">
+                <img src="/images/img-register.png" alt=""/>
+            </Col>
+            <Col className="register-right">
+                <h3 className="mb-3">Masuk</h3>
+                <Form onSubmit={onLogin}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="text"
+                            ref={emailField}
+                            placeholder="Contoh: johndee@gmail.com"
+                            style={styleLabel}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            ref={passwordField}
+                            placeholder="Masukkan Password"
+                            style={styleLabel}
+                        />
+                    </Form.Group>
+                    {errorResponse.isError && (
+                        <Alert variant="danger">{errorResponse.message}</Alert>
+                    )}
+                    <Button className="w-100" type="submit" style={styleLabel}>
+                        Daftar
+                    </Button>
+                    <p className="m-4 text-center">
+                        Belum punya akun? <Link style={styleLink} to="/register">Daftar di sini</Link>
+                    </p>
+                </Form>
+            </Col>
+        </Row>
     );
 }
