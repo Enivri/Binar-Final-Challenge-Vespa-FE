@@ -1,10 +1,49 @@
 import React from 'react';
+import { useRef, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Col, Row, Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
+import { useNavigate, Navigate, Link } from "react-router-dom";
+import { selectUser } from "../slices/userSlice";
+import axios from "axios";
 import "../css/style.css";
 
+function ProductPage() {
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const userRedux = useSelector(selectUser);
+    const [user, setUser] = useState(userRedux.creds);
 
-const ProductPage = () => {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Check status user login
+                // 1. Get token from localStorage
+                const token = localStorage.getItem("token");
 
-    return (
+                // 2. Check token validity from API
+                const currentUserRequest = await axios.get(
+                    "http://localhost:2000/v1/users",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                const currentUserResponse = currentUserRequest.data;
+
+                if (currentUserResponse.status) {
+                    setUser(currentUserResponse.data.user);
+                }
+            } catch (err) {
+                setIsLoggedIn(false);
+            }
+        };
+        fetchData();
+    }, [])
+
+
+    return isLoggedIn ? (
 
         <>
 
@@ -143,7 +182,8 @@ const ProductPage = () => {
         </>
 
 
-    )
+    ) : (
+        <Navigate to="/login" replace />);
 
 }
 

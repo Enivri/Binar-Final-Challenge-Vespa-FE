@@ -26,8 +26,6 @@ export function Product() {
             const response = await axios.get(`http://localhost:2000/v1/product/all?isPublished=true&&sold=false${categories}`);
             console.log(response);
             const data = await response.data.data.result;
-            console.log(data);
-
             setPost(data);
         };
         postData();

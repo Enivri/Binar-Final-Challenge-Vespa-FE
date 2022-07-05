@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, Link, Navigate, } from "react-router-dom";
 import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/style.css";
@@ -10,15 +10,21 @@ const colourButton = {
     borderRadius: '10px',
 };
 
+const formBorder = {
+    borderRadius: '16px',
+};
+
 function About() {
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [user, setUser] = useState({});
     const [data, setData] = useState([]);
-    const { id } = useParams();
     const nameField = useRef("");
     const townField = useRef("");
     const addressField = useRef("");
     const phoneField = useRef("");
     const [pictureField, setpictureField] = useState();
+    const fileInputRef = useRef();
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
@@ -35,13 +41,9 @@ function About() {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log(responseUsers.data.data);
             const dataUsers = await responseUsers.data.data;
-
             setData(dataUsers)
-            console.log(dataUsers);
         } catch (err) {
-            console.log(err);
         }
     }
 
@@ -60,7 +62,7 @@ function About() {
 
 
             const updateRequest = await axios.put(
-                `http://localhost:2000/v1/updateUsers/${data.id}`,
+                `http://localhost:2000/v1/users/${data.id}`,
                 userToUpdatePayload,
                 {
                     headers: {
@@ -69,26 +71,57 @@ function About() {
                     },
                 }
             );
-            console.log(updateRequest.data.data)
+            console.log(updateResponse)
             const updateResponse = updateRequest.data.data;
+            
+            console.log(updateResponse.status)
+            if (updateResponse.status) navigate("/");
 
-            if (updateResponse.status) navigate("/login");
+            
+
         } catch (err) {
             const response = err.response.data;
-
             setErrorResponse({
                 isError: true,
                 message: response.message,
             });
         }
     };
+    
 
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Check status user login
+                // 1. Get token from localStorage
+                const token = localStorage.getItem("token");
+
+                // 2. Check token validity from API
+                const currentUserRequest = await axios.get(
+                    "http://localhost:2000/v1/users",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                const currentUserResponse = currentUserRequest.data;
+
+                if (currentUserResponse.status) {
+                    setUser(currentUserResponse.data.user);
+                }
+            } catch (err) {
+                setIsLoggedIn(false);
+            }
+        };
+
+        fetchData();
         getUsers();
     }, [])
 
-    return (
+    return isLoggedIn ? (
         <div>
             {/* navbar */}
             <div className="na1 py-4 shadow">
@@ -115,39 +148,45 @@ function About() {
                     <Nav className="info2 text-dark">Lengkapi Info Akun</Nav>
                 </div>
                 <Form onSubmit={onUpdate}>
-                    <button className="mb-3 box1 buttonCamera" >
-                        <h2>
-                            <FiCamera
-                                className="camera"
-                            />
-                        </h2>
-                        <Form.Control type="file" className="formCamera" onChange={(e) => {
-                            setpictureField(e.target.files[0])
-                        }} />
-                        
+                    <button className="mb-3 box1" >
+                        <Form.Label
+                            className="upload-button-product2"
+                            for="exampleFormControlFile1"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                fileInputRef.current.click();
+                            }}
+                        >
+                        </Form.Label>
+                        <Form.Control
+                            type="file"
+                            class="form-control-file"
+                            id="exampleFormControlFile1"
+                            ref={fileInputRef}
+                            accept="image/*"
+                            onChange={(e) => {
+                                setpictureField(e.target.files[0])
+                            }} hidden />
                     </button>
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
-                        <Form.Control type="text" ref={nameField} defaultValue={data.name} />
+                        <Form.Control style={formBorder} type="text" ref={nameField} defaultValue={data.name} />
                     </Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Kota*</Form.Label>
-                        <select ref={townField} className="form-select">
-                            <option defaultValue={data.town} hidden>Pilih Kota</option>
-                            <option value="DKI-Jakarta">DKI Jakarta</option>
-                            <option value="JawaBarat">Jawa Barat</option>
-                            <option value="JawaTengah">Jawa Tengah</option>
-                            <option value="JawaTimur">Jawa Timur</option>
-                            <option value="KalimantanTengah">Kalimantan Tengah</option>
-                            <option value="KalimantanTimur">Kalimantan Timur</option>
-                            <option value="KalimantanSelatan">Kalimantan Selatan</option>
-                            <option value="KalimantanBarat">Kalimantan Barat</option>
+                        <select style={formBorder} ref={townField} className="form-select">
+                            <option hidden>Pilih Kota</option>
+                            <option ref={townField} selected={data.town === "dkijakarta" ? "selected" : ""} value="dkijakarta">DKI Jakarta</option>
+                            <option ref={townField} selected={data.town === "jawabarat" ? "selected" : ""} value="jawabarat">Jawa Barat</option>
+                            <option ref={townField} selected={data.town === "jawatengah" ? "selected" : ""} value="jawatengah">Jawa Tengah</option>
+                            <option ref={townField} selected={data.town === "jawatimur" ? "selected" : ""} value="jawatimur">Jawa Timur</option>
                         </select>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Alamat*</Form.Label>
                         <Form.Control
                             type="text"
+                            style={formBorder}
                             ref={addressField}
                             defaultValue={data.address}
                             placeholder="Contoh: Jalan Ikan Hiu 33"
@@ -159,6 +198,7 @@ function About() {
                         <Form.Label>No Handphone*</Form.Label>
                         <Form.Control
                             type="text"
+                            style={formBorder}
                             ref={phoneField}
                             defaultValue={data.phone}
                             placeholder="contoh: +628123456789"
@@ -174,7 +214,8 @@ function About() {
                 </Form>
             </Container>
         </div>
-    );
+    ) : (
+        <Navigate to="/login" replace />);
 }
 
 export default About;

@@ -295,7 +295,7 @@
 
 }
 
-.cari-produk{
+.cari-produk {
 
     position: relative;
 
@@ -331,7 +331,8 @@
 }
 
 
-.nav-item-list{
+
+.nav-item-list {
 
 
     background-repeat: no-repeat !important;
@@ -343,7 +344,7 @@
 }
 
 
-.nav-item-notification{
+.nav-item-notification {
 
     background-repeat: no-repeat !important;
 
@@ -354,7 +355,7 @@
 }
 
 
-.nav-item-user{
+.nav-item-user {
 
 
     background-repeat: no-repeat !important;
@@ -365,7 +366,7 @@
 
 
 
-.carousel-item{
+.carousel-item {
 
     width: 600px;
 
@@ -374,13 +375,13 @@
 }
 
 
-.carousel-inner{
+.carousel-inner {
 
     width: 600px;
 
 }
 
-.btn-terbitakan{
+.btn-terbitakan {
 
     display: flex;
 
@@ -415,7 +416,7 @@
 }
 
 
-.btn-edit{
+.btn-edit {
 
     box-sizing: border-box;
 
@@ -457,5 +458,41 @@
 
     border-radius: 16px;
 
+}
+
+
+
+.upload-button-product {
+    background-image: url(../images/Group1.png);
+    background-size: auto;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-right: 210px;
+}
+.upload-button-product2 {
+    background-image: url(../images/Group2.png);
+    background-size: auto;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-right: 210px;
+}
+
+#infoProduct img {
+    object-fit: cover;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-left: 100px;
+    border-radius: 12px;
+}
+#infoProduct img {
+    object-fit: cover;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-left: 100px;
+    border-radius: 12px;
 }
 

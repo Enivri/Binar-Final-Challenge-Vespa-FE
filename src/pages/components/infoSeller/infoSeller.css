@@ -1,0 +1,35 @@
+/*info Seller*/
+.card-seller{
+    width: 50em;
+    height: 9em;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+.card-seller2{
+    width: 50em;
+    height: 11em;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+
+.center{
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+}
+.marginLeft{
+    margin-left: 10em;
+    margin-bottom: 1em;
+    margin-top: 2em;
+}
+
+.button-info{
+    width: 7em;
+}
+.formList{
+    width: 25rem;
+    margin-left: 2em;
+}
+

@@ -1,38 +1,84 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Col, Row, Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import { selectUser } from "../slices/userSlice";
 import { FiArrowLeft } from "react-icons/fi";
-import { BiPlus } from "react-icons/bi";
 import axios from "axios";
 import "../css/style.css";
 
 export default function CreateProduct() {
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const userRedux = useSelector(selectUser);
-    const [user] = useState(userRedux.creds);
-    const titleField = useRef("");
+    const [user, setUser] = useState(userRedux.creds);
+    const nameField = useRef("");
+    const priceField = useRef("");
+    const categoryField = useRef("");
     const descriptionField = useRef("");
-    const [pictureField, setPictureField] = useState();
+    const [pictureField, setpictureField] = useState([]);
+    const [isPublished, setIsPublished] = useState(Boolean);
+    const [sold, setSold] = useState(Boolean);
+    const fileInputRef = useRef();
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
         message: "",
     });
 
-    const onCreate = async (e) => {
+    const colourButton = {
+        backgroundColor: '#7126B5',
+        borderRadius: '16px',
+    }
+    const borderRadius = {
+        borderRadius: '16px',
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Check status user login
+                // 1. Get token from localStorage
+                const token = localStorage.getItem("token");
+
+                // 2. Check token validity from API
+                const currentUserRequest = await axios.get(
+                    "http://localhost:2000/v1/users",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                const currentUserResponse = currentUserRequest.data;
+
+                if (currentUserResponse.status) {
+                    setUser(currentUserResponse.data.user);
+                }
+            } catch (err) {
+                setIsLoggedIn(false);
+            }
+        };
+        fetchData();
+    }, [])
+
+    const onPost = async (e) => {
         e.preventDefault();
 
         try {
             const token = localStorage.getItem("token");
             const postPayload = new FormData();
-            postPayload.append("title", titleField.current.value);
+            postPayload.append("name", nameField.current.value);
+            postPayload.append("price", priceField.current.value);
+            postPayload.append("category", categoryField.current.value);
             postPayload.append("description", descriptionField.current.value);
             postPayload.append("picture", pictureField);
+            postPayload.append("isPublished", isPublished);
+            postPayload.append("sold", sold);
 
-            const createRequest = await axios.post(
+            const postRequest = await axios.post(
                 "http://localhost:2000/v1/product",
                 postPayload,
                 {
@@ -42,11 +88,13 @@ export default function CreateProduct() {
                     },
                 }
             );
+            console.log(postRequest);
+            const postResponse = postRequest.data;
+            console.log(postResponse)
 
-            const createResponse = createRequest.data;
-
-            if (createResponse.status) navigate("/");
+            if (postResponse.status) navigate("/");
         } catch (err) {
+            console.log(err);
             const response = err.response.data;
 
             setErrorResponse({
@@ -56,7 +104,7 @@ export default function CreateProduct() {
         }
     };
 
-    return (
+    return isLoggedIn ? (
         <div>
             {/* navbar */}
             <div className="na1 py-4 shadow">
@@ -82,29 +130,30 @@ export default function CreateProduct() {
                 <div>
                     <Nav className="info3 text-dark">Lengkapi Detail Produk</Nav>
                 </div>
-                <Form onSubmit={onCreate}>
+                <Form onSubmit={onPost}>
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Nama Produk</Form.Label>
-                        <Form.Control type="text" ref={titleField} placeholder="Nama" />
+                        <Form.Control style={borderRadius} type="text" ref={nameField} placeholder="Nama" />
                     </Form>
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Harga Produk</Form.Label>
-                        <Form.Control type="text" ref={titleField} placeholder="Rp 0,00" />
+                        <Form.Control style={borderRadius} type="text" ref={priceField} placeholder="Rp 0,00" />
                     </Form>
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Kategori</Form.Label>
-                        <select ref={descriptionField} className="form-select">
-                            <option hidden>Pilih Kategori</option>
+                        <Form.Select style={borderRadius} ref={categoryField} aria-label="Default select example">
+                            <option>Pilih Kategori</option>
                             <option value="Hobi">Hobi</option>
                             <option value="Kendaraan">Kendaraan</option>
                             <option value="Baju">Baju</option>
                             <option value="Elektronik">Elektronik</option>
                             <option value="Kesehatan">Kesehatan</option>
-                        </select>
+                        </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Deskripsi</Form.Label>
                         <Form.Control
+                            style={borderRadius}
                             type="text"
                             ref={descriptionField}
                             placeholder="Contoh: Jalan Ikan Hiu 33"
@@ -115,22 +164,35 @@ export default function CreateProduct() {
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         Foto Produk
                     </Form.Group>
-                    <Button className="mb-3 box2">
-                        <h2>
-                            <BiPlus
-                                className="plus"
-                                onChange={(e) => setPictureField(e.target.files[0])}
-                            />
-                        </h2>
-                    </Button>
+                    <Form.Label
+                        className="upload-button-product"
+                        for="exampleFormControlFile1"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            fileInputRef.current.click();
+                        }}
+                    >
+                    </Form.Label>
+
+                    <Form.Control
+                        type="file"
+                        multiple
+                        class="form-control-file"
+                        id="exampleFormControlFile1"
+                        ref={fileInputRef}
+                        onChange={(e) => {
+                            setpictureField(e.target.files[0])
+                        }}
+                        hidden
+                    />
                     <Row>
                         <Col>
-                            <Button href="/produk" className="myButton7 w-100" type="submit">
+                            <Button  style={colourButton} onClick={(e) => setIsPublished(false)} className="myButton7 w-100" type="submit">
                                 Preview
                             </Button>
                         </Col>
                         <Col>
-                            <Button href="/" className="myButton6 w-100" type="submit">
+                            <Button style={colourButton} onClick={(e) => setIsPublished(true)} className="myButton6 w-100" type="submit">
                                 Terbitkan
                             </Button>
                         </Col>
@@ -141,5 +203,6 @@ export default function CreateProduct() {
                 </Form>
             </Container>
         </div>
-    );
+    ) : (
+        <Navigate to="/login" replace />);
 }
