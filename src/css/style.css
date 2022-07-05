@@ -470,6 +470,7 @@
     cursor: pointer;
     margin-right: 210px;
 }
+
 .upload-button-product2 {
     background-image: url(../images/Group2.png);
     background-size: auto;
@@ -487,6 +488,7 @@
     margin-left: 100px;
     border-radius: 12px;
 }
+
 #infoProduct img {
     object-fit: cover;
     width: 96px;
@@ -495,4 +497,6 @@
     margin-left: 100px;
     border-radius: 12px;
 }
+
+
 

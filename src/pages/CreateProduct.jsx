@@ -18,7 +18,6 @@ export default function CreateProduct() {
     const categoryField = useRef("");
     const descriptionField = useRef("");
     const [pictureField, setpictureField] = useState([]);
-    const [isPublished, setIsPublished] = useState(Boolean);
     const [sold, setSold] = useState(Boolean);
     const fileInputRef = useRef();
 
@@ -64,7 +63,7 @@ export default function CreateProduct() {
         fetchData();
     }, [])
 
-    const onPost = async (e) => {
+    const onPost = async (e, isPublished) => {
         e.preventDefault();
 
         try {
@@ -92,7 +91,10 @@ export default function CreateProduct() {
             const postResponse = postRequest.data;
             console.log(postResponse)
 
-            if (postResponse.status) navigate("/");
+            if (postResponse.status) {
+                if(isPublished) navigate("/");
+                else navigate("/previewproduk")
+            }
         } catch (err) {
             console.log(err);
             const response = err.response.data;
@@ -130,7 +132,7 @@ export default function CreateProduct() {
                 <div>
                     <Nav className="info3 text-dark">Lengkapi Detail Produk</Nav>
                 </div>
-                <Form onSubmit={onPost}>
+                <Form >
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Nama Produk</Form.Label>
                         <Form.Control style={borderRadius} type="text" ref={nameField} placeholder="Nama" />
@@ -187,12 +189,12 @@ export default function CreateProduct() {
                     />
                     <Row>
                         <Col>
-                            <Button  style={colourButton} onClick={(e) => setIsPublished(false)} className="myButton7 w-100" type="submit">
+                            <Button  style={colourButton} onClick={(e) => onPost(e, false)} className="myButton7 w-100" type="submit">
                                 Preview
                             </Button>
                         </Col>
                         <Col>
-                            <Button style={colourButton} onClick={(e) => setIsPublished(true)} className="myButton6 w-100" type="submit">
+                            <Button style={colourButton} onClick={(e) => onPost(e, true)} className="myButton6 w-100" type="submit">
                                 Terbitkan
                             </Button>
                         </Col>
