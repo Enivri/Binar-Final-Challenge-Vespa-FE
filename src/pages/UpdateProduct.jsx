@@ -1,8 +1,8 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import {Col,Row,Nav,Navbar,Form,Container,Button,Alert} from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
+import { Col, Row, Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import { selectUser } from "../slices/userSlice";
 import { FiArrowLeft } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
@@ -12,7 +12,8 @@ import "../css/style.css";
 export default function InfoProduct() {
     const navigate = useNavigate();
     const userRedux = useSelector(selectUser);
-    const [user] = useState(userRedux.creds);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [user, setUser] = useState(userRedux.creds);
     const titleField = useRef("");
     const descriptionField = useRef("");
     const [pictureField, setPictureField] = useState();
@@ -21,6 +22,43 @@ export default function InfoProduct() {
         isError: false,
         message: "",
     });
+
+    const colourButton = {
+        backgroundColor: '#7126B5',
+        borderRadius: '16px',
+    }
+    const borderRadius = {
+        borderRadius: '16px',
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Check status user login
+                // 1. Get token from localStorage
+                const token = localStorage.getItem("token");
+
+                // 2. Check token validity from API
+                const currentUserRequest = await axios.get(
+                    "http://localhost:2000/v1/users",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                const currentUserResponse = currentUserRequest.data;
+
+                if (currentUserResponse.status) {
+                    setUser(currentUserResponse.data.user);
+                }
+            } catch (err) {
+                setIsLoggedIn(false);
+            }
+        };
+        fetchData();
+    }, [])
 
     const onCreate = async (e) => {
         e.preventDefault();
@@ -56,7 +94,7 @@ export default function InfoProduct() {
         }
     };
 
-    return (
+    return isLoggedIn ? (
         <div>
             {/* navbar */}
             <div className="na1 py-4 shadow">
@@ -85,15 +123,15 @@ export default function InfoProduct() {
                 <Form onSubmit={onCreate}>
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Nama Produk</Form.Label>
-                        <Form.Control type="text" ref={titleField} placeholder="Nama" />
+                        <Form.Control style={borderRadius} type="text" ref={titleField} placeholder="Nama" />
                     </Form>
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Harga Produk</Form.Label>
-                        <Form.Control type="text" ref={titleField} placeholder="Rp 0,00" />
+                        <Form.Control style={borderRadius} type="text" ref={titleField} placeholder="Rp 0,00" />
                     </Form>
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Kategori</Form.Label>
-                        <select ref={descriptionField} className="form-select">
+                        <select style={borderRadius} ref={descriptionField} className="form-select">
                             <option hidden>Pilih Kategori</option>
                             <option value="Hobi">Hobi</option>
                             <option value="Kendaraan">Kendaraan</option>
@@ -105,6 +143,7 @@ export default function InfoProduct() {
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Deskripsi</Form.Label>
                         <Form.Control
+                            style={borderRadius}
                             type="text"
                             ref={descriptionField}
                             placeholder="Contoh: Jalan Ikan Hiu 33"
@@ -125,12 +164,12 @@ export default function InfoProduct() {
                     </Button>
                     <Row>
                         <Col>
-                            <Button className="myButton7 w-100" type="submit">
-                                Preview
+                            <Button style={colourButton} className="myButton7 w-100" type="submit">
+                                Batal
                             </Button>
                         </Col>
                         <Col>
-                            <Button className="myButton6 w-100" type="submit">
+                            <Button style={colourButton} className="myButton6 w-100" type="submit">
                                 Terbitkan
                             </Button>
                         </Col>
@@ -141,5 +180,6 @@ export default function InfoProduct() {
                 </Form>
             </Container>
         </div>
-    );
+    ) : (
+        <Navigate to="/login" replace />);
 }

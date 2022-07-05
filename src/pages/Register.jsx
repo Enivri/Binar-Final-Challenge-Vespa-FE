@@ -46,6 +46,11 @@ export default function Register() {
         }
     };
 
+    const colourButton = {
+        backgroundColor: '#7126B5',
+        borderRadius: '10px',
+    };
+
     const styleLabel = {
         borderRadius: '10px',
     };
@@ -96,7 +101,7 @@ export default function Register() {
                             {errorResponse.isError && (
                                 <Alert variant="danger">{errorResponse.message}</Alert>
                             )}
-                            <Button className="w-100" type="submit" style={styleLabel}>
+                            <Button className="w-100" type="submit" style={colourButton}>
                                 Daftar
                             </Button>
                             <p className="m-4 text-center">

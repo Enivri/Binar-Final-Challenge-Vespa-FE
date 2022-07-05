@@ -8,6 +8,11 @@ import PICT1 from '../images/login.png';
 export default function Login() {
     const navigate = useNavigate();
 
+    const colourButton = {
+        backgroundColor: '#7126B5',
+        borderRadius: '10px',
+    };
+    
     const styleLabel = {
         borderRadius: '10px',
     };
@@ -58,7 +63,6 @@ export default function Login() {
         }
     };
 
-
     return (
         <Container fluid="true">
             <Row >
@@ -90,7 +94,7 @@ export default function Login() {
                             {errorResponse.isError && (
                                 <Alert variant="danger">{errorResponse.message}</Alert>
                             )}
-                            <Button style={styleLabel} className="w-100" type="submit">
+                            <Button style={colourButton} className="w-100" type="submit">
                                 Masuk
                             </Button>
                             <p>
