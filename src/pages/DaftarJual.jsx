@@ -1,7 +1,7 @@
 import React from "react";
-import { DaftarJualNavbar } from "../components/Navbar/Navbar";
-import { SidebarUser, SidebarCategory } from "../components/Sidebar/Sidebar";
-import { Content } from "../components/Content/Content";
+import { HomeNavbar } from "./components/Navbar/Navbar";
+import { SidebarUser, SidebarCategory } from "./components/Sidebar/Sidebar";
+import { Content } from "./components/Content/Content";
 import { Container, Row, Col } from "react-bootstrap";
 import "../css/style.css";
 
@@ -9,7 +9,7 @@ export default function DaftarJual() {
   return (
     <>
       <div>
-        <DaftarJualNavbar />
+        <HomeNavbar />
       </div>
       <Container className="mt-4 page-daftar-jual" style={{ width: "70%" }}>
         <h5 className="fw-bold mb-3">Daftar Jual Saya</h5>

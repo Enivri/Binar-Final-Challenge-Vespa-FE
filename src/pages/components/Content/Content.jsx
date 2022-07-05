@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, Button, Container, Form } from "react-bootstrap";
 import { FiPlus } from "react-icons/fi";
-import ImageUser from "../images/Rectangle-33.png";
-import firstImage from "../images/Rectangle-23.png";
-import "../css/style.css";
+import ImageUser from "../../../images/Rectangle-23.png";
+import firstImage from "../../../images/Rectangle-23.png";
+import "../../../css/style.css";
 
 export function Content() {
   const title = {

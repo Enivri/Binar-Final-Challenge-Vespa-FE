@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import UpdateProduct from "./pages/UpdateProduct";
 import CreateProduct from "./pages/CreateProduct";
+import SellerPage from "./pages/DaftarJual";
 import Profile from "./pages/Profile";
 import Seller from "./pages/Seller";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,6 +23,7 @@ render(
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/dashboardseller" element={<SellerPage />} />
         <Route path="/previewproduk" element={<ProductPage />} />
         <Route path="/updateproduk" element={<UpdateProduct />} />
         <Route path="/buatproduk" element={<CreateProduct />} />
