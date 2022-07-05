@@ -11,7 +11,7 @@ import jamCasio from '../images/product.png'
 import imageSeller from '../images/profile.png'
 
 
-function ProductPage() {
+function ProductPageBuyer() {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const userRedux = useSelector(selectUser);
@@ -96,16 +96,13 @@ function ProductPage() {
                         </Card>
                     </Col>
                     <Col >
-                        <Card className="cardbody">
+                        <Card className="cardbodybuyer">
                             <Card.Body>
                                 <Card.Title className="card-title1">Jam Tangan Casio</Card.Title>
                                 <Card.Text className="card-text1">Aksesoris</Card.Text>
                                 <Card.Title className="card-title1">Rp. 250.000</Card.Title>
-                                <Button style={colourButton} className="btn btn-terbitkan1" type="submit">
-                                    Terbitkan
-                                </Button>
-                                <Button style={colourButton} className="btn btn-edit1" type="submit">
-                                    Edit
+                                <Button style={colourButton} className="btn btn-buyer" type="submit">
+                                Saya tertarik dan ingin nego
                                 </Button>
                             </Card.Body>
                         </Card>
@@ -132,4 +129,4 @@ function ProductPage() {
 
 }
 
-export default ProductPage;
+export default ProductPageBuyer;
