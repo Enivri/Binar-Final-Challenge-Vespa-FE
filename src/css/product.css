@@ -1,0 +1,129 @@
+
+/* produkpage */
+
+.carousel-item {
+    width: 600px;
+    height: 436px;
+}
+
+.carousel-inner {
+    width: 600px;
+}
+
+
+.cardbody {
+    margin-left: 64px;
+    width: 336px;
+    height: 266px;
+    background: #FFFFFF;
+    /* Shadow/High */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+}
+
+.card-title1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.card-text1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    /* Neutral/03 */
+    color: #8A8A8A;
+}
+
+.btn-terbitkan1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    gap: 4px;
+    position: absolute;
+    width: 304px;
+    height: 48px;
+    margin-top: 16px;
+    /* Primary/Purple/04 */
+    background: #7126B5;
+    border-radius: 16px;
+    border-color: #7126B5;
+}
+
+.btn-edit1 {
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    gap: 4px;
+    position: absolute;
+    width: 304px;
+    height: 48px;
+    margin-top: 78px;
+    /* Neutral/01 */
+    background: #FFFFFF;
+    color: #000000;
+    /* Primary/Purple/04 */
+    border: 1px solid #7126B5;
+    border-radius: 16px;
+}
+
+.card-seller1 {
+    position: absolute;
+    width: 336px;
+    height: 80px;
+    margin-left: 32px;
+}
+
+.card-body-seller {
+    position: absolute;
+    width: 336px;
+    height: 80px;
+    margin-left: 64px;
+    margin-top: 24px;
+    /* Neutral/01 */
+    background: #FFFFFF;
+    background-repeat: no-repeat !important;
+    background-position: left !important;
+    /* Shadow/Low */
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+}
+
+.seller-image {
+    width: 48px;
+    height: 48px;
+    margin-left: 16px;
+    margin-top: 1px;
+    margin-right: auto;
+    flex: none;
+}
+
+.card-descriptions {
+    width: 600px;
+    height: 339px;
+    /* Neutral/01 */
+    background: #FFFFFF;
+}
+
+.card-body-descriptions {
+    width: 600px;
+    height: 339px;
+    margin-top: 24px;
+    padding: 16px;
+    /* Neutral/01 */
+    background: #FFFFFF;
+    /* Shadow/Low */
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+}
