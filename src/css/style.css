@@ -38,7 +38,7 @@
 }
 
 .regist-right {
-     margin-top: 20%;
+    margin-top: 20%;
     margin-bottom: 20%;
     margin-left: 20%;
     margin-right: 20%;  
@@ -294,4 +294,24 @@
     border-radius: 12px;
 }
 
+/* info penawaran 1 */
+
+.greyfont {
+    font-size: 10px;
+    color: #8A8A8A;
+    margin-bottom: 5px;
+}
+.titlefont1 {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.titlefont2 p {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+.buttonWA{
+    margin-top: 24px;
+    margin-left: 7px;
+}
 
