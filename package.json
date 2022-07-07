@@ -5,6 +5,10 @@
   "dependencies": {
     "@bearer/js": "^1.13.10",
     "@bearer/react": "^1.13.10",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.8.7",
     "@react-oauth/google": "^0.2.2",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.14.1",
@@ -12,6 +16,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
+    "mui": "^0.0.1",
     "owl.carousel": "^2.3.4",
     "react": "17.0.0",
     "react-bootstrap": "^2.4.0",
