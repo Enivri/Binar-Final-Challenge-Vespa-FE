@@ -21,7 +21,10 @@ export function InfoSellerNavbar() {
                     </div>
                 </nav>
             </div>
-            <div className="mt-3">
+            <div className="mt-5">
+
+            </div>
+            <div className="mt-1">
 
             </div>
         </>
