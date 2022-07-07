@@ -1,8 +1,11 @@
 import React from "react";
-import { Container, Button, Row, Col, Card, Image, Modal, Form } from "react-bootstrap";
+import { Container, Button, Card,Modal, Form } from "react-bootstrap";
 import '../infoSeller/infoSeller.css';
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link} from "react-router-dom";
 import { SiWhatsapp } from "react-icons/si";
+import { FiArrowLeft } from "react-icons/fi";
+import { GrClose } from "react-icons/gr";
 import PRODUCTIMG from '../../../images/product.png'
 import PROFILEIMG from '../../../images/profile.png'
 
@@ -16,10 +19,20 @@ export function InfoSellerHome() {
 
     return (
         <Container>
+           
+
+
             <Card className="card-seller">
+            
+                <div></div>
                 <div className="row">
+                <div className="col-sm-1 backButton">
+                    <Link className="arrow2" to="/">
+                        <FiArrowLeft />
+                    </Link>
+                </div>
                     <div className="col-sm-2">
-                        <Card.Img variant="top" src={PROFILEIMG} />
+                        <Card.Img variant="top" className="PICT" src={PROFILEIMG} />
                     </div>
                     <div className="col">
                         <Card.Body>
@@ -70,26 +83,34 @@ export function InfoSellerHome() {
 
                     </div>
                     <div className="col-md-2">
+                    <Button variant="outline-info" className="button-info button" onClick={(handleShow)}>  Status </Button>
+
+                    </div>
+                    <div className="col-sm-1">
 
                     </div>
                     <div className="col-md-2">
-                        <Button variant="outline-info" className="button-info" onClick={(handleShow)}>  Status </Button>
-                    </div>
-                    <div className="col-md-2">
-                        <Button variant="success" className="button-register">
-                            <SiWhatsapp className="icon-register" />
+                    <Button variant="success" className="button-register button">
                             Hubungi
+                            <SiWhatsapp className="icon-register" />
                         </Button>
+
                     </div>
+
+                        
+                    
 
                 </div>
             </Card>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header>
-                    <Modal.Title>
+            <Link className="closeButton" to="/infoSeller">
+                        <GrClose />
+                    </Link>
+                <Modal.Header className="center">
+                    <h5>
                         Perbarui Status Penjualan ProdukMu
-                    </Modal.Title>
+                    </h5>
 
                 </Modal.Header>
                 <Modal.Body>
@@ -119,7 +140,7 @@ export function InfoSellerHome() {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="outline-info" className="button-info" onClick={handleClose}> Kirim </Button>
+                    <Button variant="outline-info" className="button-info buttonModal" onClick={handleClose}> Kirim </Button>
                 </Modal.Footer>
 
             </Modal>
