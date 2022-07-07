@@ -2,7 +2,7 @@ import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Col, Row, Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Navigate, Link } from "react-router-dom";
+import { useNavigate, Navigate, Link, useParams } from "react-router-dom";
 import { selectUser } from "../slices/userSlice";
 import { FiArrowLeft } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
@@ -13,10 +13,16 @@ export default function InfoProduct() {
     const navigate = useNavigate();
     const userRedux = useSelector(selectUser);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const { id } = useParams();
     const [user, setUser] = useState(userRedux.creds);
-    const titleField = useRef("");
+    const [data, setData] = useState([]);
+    const nameField = useRef("");
+    const priceField = useRef("");
+    const categoryField = useRef("");
     const descriptionField = useRef("");
-    const [pictureField, setPictureField] = useState();
+    const [pictureField, setpictureField] = useState([]);
+    const [sold, setSold] = useState(Boolean);
+    const fileInputRef = useRef();
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
@@ -30,6 +36,26 @@ export default function InfoProduct() {
     const borderRadius = {
         borderRadius: '16px',
     }
+
+    const getProduct = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const responseProduct = await axios.get(`http://localhost:2000/v1/product/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            })
+            console.log(responseProduct)
+            // console.log(getProduct)
+            const dataProduct = await responseProduct.data.data.posts;
+            setData(dataProduct)
+            console.log(dataProduct);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -58,21 +84,27 @@ export default function InfoProduct() {
             }
         };
         fetchData();
-    }, [])
+        getProduct();
+    }, [id])
 
-    const onCreate = async (e) => {
+
+    const onUpdate = async (e, isPublished) => {
         e.preventDefault();
 
         try {
             const token = localStorage.getItem("token");
-            const postPayload = new FormData();
-            postPayload.append("title", titleField.current.value);
-            postPayload.append("description", descriptionField.current.value);
-            postPayload.append("picture", pictureField);
+            const productToUpdatePayload = new FormData();
+            productToUpdatePayload.append("name", nameField.current.value);
+            productToUpdatePayload.append("price", priceField.current.value);
+            productToUpdatePayload.append("category", categoryField.current.value);
+            productToUpdatePayload.append("description", descriptionField.current.value);
+            productToUpdatePayload.append("picture", pictureField);
+            productToUpdatePayload.append("isPublished", isPublished);
+            productToUpdatePayload.append("sold", sold);
 
-            const createRequest = await axios.post(
-                "http://localhost:2000/v1/product",
-                postPayload,
+            const createRequest = await axios.put(
+                `http://localhost:2000/v1/product/${id}`,
+                productToUpdatePayload,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -80,10 +112,15 @@ export default function InfoProduct() {
                     },
                 }
             );
-
+            console.log(id)
+            console.log(createRequest)
             const createResponse = createRequest.data;
 
-            if (createResponse.status) navigate("/");
+            if (createResponse.status) {
+                if (isPublished) navigate("/");
+                else navigate(`/previewproduk/${data.id}`)
+            }
+
         } catch (err) {
             const response = err.response.data;
 
@@ -105,7 +142,7 @@ export default function InfoProduct() {
                     <Navbar.Brand href="#" className="brand" />
                     <div className="offcanvas-body" id="offcanvasRight">
                         <div className="info1 navbar">
-                            <Nav className="text-dark"> Lengkapi Detail Produk </Nav>
+                            <Nav className="text-dark">Update Detail Produk </Nav>
                         </div>
                     </div>
                 </nav>
@@ -118,26 +155,26 @@ export default function InfoProduct() {
                     </Link>
                 </div>
                 <div>
-                    <Nav className="info3 text-dark">Lengkapi Detail Produk</Nav>
+                    <Nav className="info3 text-dark">Update Detail Produk</Nav>
                 </div>
-                <Form onSubmit={onCreate}>
+                <Form>
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Nama Produk</Form.Label>
-                        <Form.Control style={borderRadius} type="text" ref={titleField} placeholder="Nama" />
+                        <Form.Control style={borderRadius} defaultValue={data.name} type="text" ref={nameField} placeholder="Nama" />
                     </Form>
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Harga Produk</Form.Label>
-                        <Form.Control style={borderRadius} type="text" ref={titleField} placeholder="Rp 0,00" />
+                        <Form.Control style={borderRadius} defaultValue={data.price} type="text" ref={priceField} placeholder="Rp 0,00" />
                     </Form>
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Kategori</Form.Label>
-                        <select style={borderRadius} ref={descriptionField} className="form-select">
+                        <select style={borderRadius} ref={categoryField} className="form-select">
                             <option hidden>Pilih Kategori</option>
-                            <option value="Hobi">Hobi</option>
-                            <option value="Kendaraan">Kendaraan</option>
-                            <option value="Baju">Baju</option>
-                            <option value="Elektronik">Elektronik</option>
-                            <option value="Kesehatan">Kesehatan</option>
+                            <option ref={categoryField} selected={data.category === "Hobi" ? "selected" : ""} value="Hobi">Hobi</option>
+                            <option ref={categoryField} selected={data.category === "Kendaraan" ? "selected" : ""} value="Kendaraan">Kendaraan</option>
+                            <option ref={categoryField} selected={data.category === "Baju" ? "selected" : ""} value="Baju">Baju</option>
+                            <option ref={categoryField} selected={data.category === "Elektronik" ? "selected" : ""} value="Elektronik">Elektronik</option>
+                            <option ref={categoryField} selected={data.category === "Kesehatan" ? "selected" : ""} value="Kesehatan">Kesehatan</option>
                         </select>
                     </Form.Group>
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
@@ -145,6 +182,7 @@ export default function InfoProduct() {
                         <Form.Control
                             style={borderRadius}
                             type="text"
+                            defaultValue={data.description}
                             ref={descriptionField}
                             placeholder="Contoh: Jalan Ikan Hiu 33"
                             as="textarea"
@@ -154,22 +192,34 @@ export default function InfoProduct() {
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         Foto Produk
                     </Form.Group>
-                    <Button className="mb-3 box2">
-                        <h2>
-                            <BiPlus
-                                className="plus"
-                                onChange={(e) => setPictureField(e.target.files[0])}
-                            />
-                        </h2>
-                    </Button>
+                    <Form.Label
+                        className="upload-button-product"
+                        for="exampleFormControlFile1"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            fileInputRef.current.click();
+                        }}
+                    >
+                    </Form.Label>
+                    <Form.Control
+                        type="file"
+                        multiple
+                        class="form-control-file"
+                        id="exampleFormControlFile1"
+                        ref={fileInputRef}
+                        onChange={(e) => {
+                            setpictureField(e.target.files[0])
+                        }}
+                        hidden
+                    />
                     <Row>
                         <Col>
-                            <Button style={colourButton} className="myButton7 w-100" type="submit">
+                            <Button style={colourButton} onClick={(e) => onUpdate(e, false)} className="myButton7 w-100" type="submit">
                                 Batal
                             </Button>
                         </Col>
                         <Col>
-                            <Button style={colourButton} className="myButton6 w-100" type="submit">
+                            <Button style={colourButton} onClick={(e) => onUpdate(e, true)} className="myButton6 w-100" type="submit">
                                 Terbitkan
                             </Button>
                         </Col>

@@ -22,8 +22,8 @@ render(
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/previewproduk" element={<ProductPage />} />
-        <Route path="/updateproduk" element={<UpdateProduct />} />
+        <Route path="/previewproduk/:id" element={<ProductPage />} />
+        <Route path="/updateproduk/:id" element={<UpdateProduct />} />
         <Route path="/buatproduk" element={<CreateProduct />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/infoSeller" element={<Seller />} />
