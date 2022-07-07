@@ -47,5 +47,11 @@
     margin-top: 1em;
 
 }
+.transparent{
+    background-color: transparent;
+    width: 2em;
+    margin-left: 29em;
+    border: none;
+}
 
 

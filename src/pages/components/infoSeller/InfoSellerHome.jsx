@@ -104,13 +104,14 @@ export function InfoSellerHome() {
             </Card>
 
             <Modal show={show} onHide={handleClose}>
-            <Link className="closeButton" to="/infoSeller">
+            <button className="transparent" onClick={(handleClose)}>
                         <GrClose />
-                    </Link>
+            </button>
                 <Modal.Header className="center">
                     <h5>
                         Perbarui Status Penjualan ProdukMu
                     </h5>
+                    
 
                 </Modal.Header>
                 <Modal.Body>
