@@ -498,7 +498,7 @@
     border-radius: 12px;
 }
 
-/* daftar jual */
+/* daftar Jual */
 .home-nav.daftar-jual .container h3 {
     display: none;
   }
@@ -806,7 +806,7 @@
     .navigasi-user .card img {
       width: 15% !important;
     }
-    
+
     /* category */
     .category div button.button-sell {
       width: 25%;
