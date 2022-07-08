@@ -109,7 +109,7 @@ export function Product() {
                                         <Card.Body>
                                             <Card.Title className="cut-text">{post.name}</Card.Title>
                                             <p className="text-black-50 categorycard">{post.category}</p>
-                                            <Card.Text>Rp {post.price}</Card.Text>
+                                            <Card.Text>Rp {post.price.toLocaleString()}</Card.Text>
                                         </Card.Body>
                                     </Card>
                                 </Col>,

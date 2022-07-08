@@ -97,8 +97,10 @@ export default function CreateProduct() {
             console.log(postResponse)
 
             if (postResponse.status) {
+                setData(postResponse.data.created_product);
+
                 if (isPublished) navigate("/");
-                else navigate("/")
+                else navigate("/dashboardseller")
             }
         } catch (err) {
             console.log(err);
@@ -199,11 +201,11 @@ export default function CreateProduct() {
                             </Button>
                         </Col>
                         <Col>
-                            <Link to={`/previewproduk/${data.id}`}>
-                                <Button style={colourButton} onClick={(e) => onPost(e, true)} className="myButton6 w-100" type="submit">
-                                    Terbitkan
-                                </Button>
-                            </Link>
+
+                            <Button style={colourButton} onClick={(e) => onPost(e, true)} className="myButton6 w-100" type="submit">
+                                Terbitkan
+                            </Button>
+
                         </Col>
                     </Row>
                     {errorResponse.isError && (
@@ -211,7 +213,7 @@ export default function CreateProduct() {
                     )}
                 </Form>
             </Container>
-        </div>
+        </div >
     ) : (
         <Navigate to="/login" replace />);
 }

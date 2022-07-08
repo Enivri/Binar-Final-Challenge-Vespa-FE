@@ -156,7 +156,7 @@ function ProductPage() {
                             <Card.Body>
                                 <Card.Title className="card-title1" >{data.name}</Card.Title>
                                 <Card.Text className="card-text1">{data.category}</Card.Text>
-                                <Card.Title className="card-title1">Rp {data.price}</Card.Title>
+                                <Card.Text className="card-title1">Rp {data.price}</Card.Text>
                                 <Button style={colourButton} onClick={(e) => onUpdate(e, true)} className="btn btn-terbitkan1" type="submit">
                                     Terbitkan
                                 </Button>
