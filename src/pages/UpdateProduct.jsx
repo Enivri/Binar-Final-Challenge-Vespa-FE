@@ -2,19 +2,19 @@ import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Col, Row, Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Navigate, useParams, Link } from "react-router-dom";
+import { useNavigate, Navigate, Link, useParams } from "react-router-dom";
 import { selectUser } from "../slices/userSlice";
-
 import { FiArrowLeft } from "react-icons/fi";
+import { BiPlus } from "react-icons/bi";
 import axios from "axios";
 import "../css/style.css";
 
-export default function CreateProduct() {
+export default function InfoProduct() {
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const userRedux = useSelector(selectUser);
-    const [user, setUser] = useState(userRedux.creds);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const { id } = useParams();
+    const [user, setUser] = useState(userRedux.creds);
     const [data, setData] = useState([]);
     const nameField = useRef("");
     const priceField = useRef("");
@@ -35,6 +35,24 @@ export default function CreateProduct() {
     }
     const borderRadius = {
         borderRadius: '16px',
+    }
+
+    const getProduct = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const responseProduct = await axios.get(`http://localhost:2000/v1/product/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            })
+            console.log(responseProduct)
+            // console.log(getProduct)
+            const dataProduct = await responseProduct.data.data.posts;
+            setData(dataProduct)
+            console.log(dataProduct);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
 
@@ -66,25 +84,27 @@ export default function CreateProduct() {
             }
         };
         fetchData();
+        getProduct();
     }, [id])
 
-    const onPost = async (e, isPublished) => {
+
+    const onUpdate = async (e, isPublished) => {
         e.preventDefault();
 
         try {
             const token = localStorage.getItem("token");
-            const postPayload = new FormData();
-            postPayload.append("name", nameField.current.value);
-            postPayload.append("price", priceField.current.value);
-            postPayload.append("category", categoryField.current.value);
-            postPayload.append("description", descriptionField.current.value);
-            postPayload.append("picture", pictureField);
-            postPayload.append("isPublished", isPublished);
-            postPayload.append("sold", sold);
+            const productToUpdatePayload = new FormData();
+            productToUpdatePayload.append("name", nameField.current.value);
+            productToUpdatePayload.append("price", priceField.current.value);
+            productToUpdatePayload.append("category", categoryField.current.value);
+            productToUpdatePayload.append("description", descriptionField.current.value);
+            productToUpdatePayload.append("picture", pictureField);
+            productToUpdatePayload.append("isPublished", isPublished);
+            productToUpdatePayload.append("sold", sold);
 
-            const postRequest = await axios.post(
-                "http://localhost:2000/v1/product",
-                postPayload,
+            const createRequest = await axios.put(
+                `http://localhost:2000/v1/product/${id}`,
+                productToUpdatePayload,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -92,16 +112,16 @@ export default function CreateProduct() {
                     },
                 }
             );
-            console.log(postRequest);
-            const postResponse = postRequest.data;
-            console.log(postResponse)
+            console.log(id)
+            console.log(createRequest)
+            const createResponse = createRequest.data;
 
-            if (postResponse.status) {
+            if (createResponse.status) {
                 if (isPublished) navigate("/");
-                else navigate("/")
+                else navigate(`/previewproduk/${data.id}`)
             }
+
         } catch (err) {
-            console.log(err);
             const response = err.response.data;
 
             setErrorResponse({
@@ -122,7 +142,7 @@ export default function CreateProduct() {
                     <Navbar.Brand href="#" className="brand" />
                     <div className="offcanvas-body" id="offcanvasRight">
                         <div className="info1 navbar">
-                            <Nav className="text-dark"> Buat  Detail Produk </Nav>
+                            <Nav className="text-dark">Update Detail Produk </Nav>
                         </div>
                     </div>
                 </nav>
@@ -135,33 +155,34 @@ export default function CreateProduct() {
                     </Link>
                 </div>
                 <div>
-                    <Nav className="info3 text-dark">Lengkapi Detail Produk</Nav>
+                    <Nav className="info3 text-dark">Update Detail Produk</Nav>
                 </div>
-                <Form >
+                <Form>
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Nama Produk</Form.Label>
-                        <Form.Control style={borderRadius} type="text" ref={nameField} placeholder="Nama" />
+                        <Form.Control style={borderRadius} defaultValue={data.name} type="text" ref={nameField} placeholder="Nama" />
                     </Form>
                     <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Harga Produk</Form.Label>
-                        <Form.Control style={borderRadius} type="text" ref={priceField} placeholder="Rp 0,00" />
+                        <Form.Control style={borderRadius} defaultValue={data.price} type="text" ref={priceField} placeholder="Rp 0,00" />
                     </Form>
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Kategori</Form.Label>
-                        <Form.Select style={borderRadius} ref={categoryField} aria-label="Default select example">
-                            <option>Pilih Kategori</option>
-                            <option value="Hobi">Hobi</option>
-                            <option value="Kendaraan">Kendaraan</option>
-                            <option value="Baju">Baju</option>
-                            <option value="Elektronik">Elektronik</option>
-                            <option value="Kesehatan">Kesehatan</option>
-                        </Form.Select>
+                        <select style={borderRadius} ref={categoryField} className="form-select">
+                            <option hidden>Pilih Kategori</option>
+                            <option ref={categoryField} selected={data.category === "Hobi" ? "selected" : ""} value="Hobi">Hobi</option>
+                            <option ref={categoryField} selected={data.category === "Kendaraan" ? "selected" : ""} value="Kendaraan">Kendaraan</option>
+                            <option ref={categoryField} selected={data.category === "Baju" ? "selected" : ""} value="Baju">Baju</option>
+                            <option ref={categoryField} selected={data.category === "Elektronik" ? "selected" : ""} value="Elektronik">Elektronik</option>
+                            <option ref={categoryField} selected={data.category === "Kesehatan" ? "selected" : ""} value="Kesehatan">Kesehatan</option>
+                        </select>
                     </Form.Group>
                     <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                         <Form.Label>Deskripsi</Form.Label>
                         <Form.Control
                             style={borderRadius}
                             type="text"
+                            defaultValue={data.description}
                             ref={descriptionField}
                             placeholder="Contoh: Jalan Ikan Hiu 33"
                             as="textarea"
@@ -180,7 +201,6 @@ export default function CreateProduct() {
                         }}
                     >
                     </Form.Label>
-
                     <Form.Control
                         type="file"
                         multiple
@@ -194,16 +214,14 @@ export default function CreateProduct() {
                     />
                     <Row>
                         <Col>
-                            <Button style={colourButton} onClick={(e) => onPost(e, false)} className="myButton7 w-100" type="submit">
+                            <Button style={colourButton} onClick={(e) => onUpdate(e, false)} className="myButton7 w-100" type="submit">
                                 Preview
                             </Button>
                         </Col>
                         <Col>
-                            <Link to={`/previewproduk/${data.id}`}>
-                                <Button style={colourButton} onClick={(e) => onPost(e, true)} className="myButton6 w-100" type="submit">
-                                    Terbitkan
-                                </Button>
-                            </Link>
+                            <Button style={colourButton} onClick={(e) => onUpdate(e, true)} className="myButton6 w-100" type="submit">
+                                Terbitkan
+                            </Button>
                         </Col>
                     </Row>
                     {errorResponse.isError && (

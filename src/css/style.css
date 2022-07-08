@@ -1,5 +1,4 @@
-
-.body{
+.body {
     font-family: Poppins;
 }
 
@@ -41,7 +40,7 @@
     margin-top: 20%;
     margin-bottom: 20%;
     margin-left: 20%;
-    margin-right: 20%;  
+    margin-right: 20%;
 }
 
 .regist-right p {
@@ -54,7 +53,7 @@
     font-size: 24px;
     color: black;
     font-weight: 700;
-} 
+}
 
 /* Home */
 
@@ -62,7 +61,7 @@
 /* produk */
 
 
-.cari-produk{
+.cari-produk {
 
     position: relative;
 
@@ -98,7 +97,7 @@
 }
 
 
-.nav-item-list{
+.nav-item-list {
 
 
     background-repeat: no-repeat !important;
@@ -110,7 +109,7 @@
 }
 
 
-.nav-item-notification{
+.nav-item-notification {
 
     background-repeat: no-repeat !important;
 
@@ -121,7 +120,7 @@
 }
 
 
-.nav-item-user{
+.nav-item-user {
 
 
     background-repeat: no-repeat !important;
@@ -132,7 +131,7 @@
 
 
 
-.carousel-item{
+.carousel-item {
 
     width: 600px;
 
@@ -141,13 +140,13 @@
 }
 
 
-.carousel-inner{
+.carousel-inner {
 
     width: 600px;
 
 }
 
-.btn-terbitakan{
+.btn-terbitakan {
 
     display: flex;
 
@@ -182,7 +181,7 @@
 }
 
 
-.btn-edit{
+.btn-edit {
 
     box-sizing: border-box;
 
@@ -225,6 +224,7 @@
     border-radius: 16px;
 
 }
+
 /* infoprofile */
 
 
@@ -292,7 +292,203 @@
     background-color: #E2D4F0;
     border: none;
     border-radius: 12px;
+
 }
+
+.cari-produk {
+
+    position: relative;
+
+    width: 444px;
+
+    height: 48px;
+
+    right: 170px;
+
+
+    font-family: 'Poppins';
+
+    font-style: normal;
+
+    font-weight: 400;
+
+    font-size: 14px;
+
+    line-height: 20px;
+
+
+
+    background-repeat: no-repeat !important;
+
+    background-position: 390px 12px !important;
+
+    background: #EEEEEE;
+
+    border-radius: 16px;
+
+    border-color: white;
+
+}
+
+
+
+.nav-item-list {
+
+
+    background-repeat: no-repeat !important;
+
+    background-position: center !important;
+
+    margin-right: 24px;
+
+}
+
+
+.nav-item-notification {
+
+    background-repeat: no-repeat !important;
+
+    background-position: center !important;
+
+    margin-right: 24px;
+
+}
+
+
+.nav-item-user {
+
+
+    background-repeat: no-repeat !important;
+
+    background-position: center !important;
+
+}
+
+
+
+.carousel-item {
+
+    width: 600px;
+
+    height: 436px;
+
+}
+
+
+.carousel-inner {
+
+    width: 600px;
+
+}
+
+.btn-terbitakan {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 24px;
+
+    gap: 4px;
+
+
+    position: absolute;
+
+    width: 304px;
+
+    height: 48px;
+
+    margin-top: 16px;
+
+
+    /* Primary/Purple/04 */
+
+    background: #7126B5;
+
+    border-radius: 16px;
+
+    border-color: #7126B5;
+
+}
+
+
+.btn-edit {
+
+    box-sizing: border-box;
+
+
+    /* Auto layout */
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 24px;
+
+    gap: 4px;
+
+
+    position: absolute;
+
+    width: 304px;
+
+    height: 48px;
+
+    margin-top: 78px;
+
+
+    /* Neutral/01 */
+
+    background: #FFFFFF;
+
+    color: #000000;
+
+
+    /* Primary/Purple/04 */
+
+    border: 1px solid #7126B5;
+
+    border-radius: 16px;
+
+}
+
+
+
+.upload-button-product {
+    background-image: url(../images/Group1.png);
+    background-size: auto;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-right: 210px;
+}
+
+.upload-button-product2 {
+    background-image: url(../images/Group2.png);
+    background-size: auto;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-right: 210px;
+}
+
+#infoProduct img {
+    object-fit: cover;
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    margin-left: 100px;
+    border-radius: 12px;
+}
+
 
 /* info penawaran 1 */
 
@@ -314,4 +510,5 @@
     margin-top: 24px;
     margin-left: 7px;
 }
+
 
