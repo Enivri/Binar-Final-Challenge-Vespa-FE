@@ -215,7 +215,7 @@ export default function InfoProduct() {
                     <Row>
                         <Col>
                             <Button style={colourButton} onClick={(e) => onUpdate(e, false)} className="myButton7 w-100" type="submit">
-                                Batal
+                                Preview
                             </Button>
                         </Col>
                         <Col>
