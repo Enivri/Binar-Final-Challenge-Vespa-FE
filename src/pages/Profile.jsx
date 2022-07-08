@@ -71,13 +71,15 @@ function About() {
                     },
                 }
             );
-            console.log(updateResponse)
-            const updateResponse = updateRequest.data.data;
+            console.log(updateRequest)
             
+            const updateResponse = updateRequest.data;
+            console.log(updateResponse)
+
             console.log(updateResponse.status)
             if (updateResponse.status) navigate("/");
 
-            
+
 
         } catch (err) {
             const response = err.response.data;
@@ -87,7 +89,7 @@ function About() {
             });
         }
     };
-    
+
 
 
     useEffect(() => {
