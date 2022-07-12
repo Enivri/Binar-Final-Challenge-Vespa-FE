@@ -10,7 +10,9 @@ import ProductPageBuyer from "./pages/ProductPageBuyer";
 import ProductPage from "./pages/ProductPage";
 import UpdateProduct from "./pages/UpdateProduct";
 import CreateProduct from "./pages/CreateProduct";
+import SellerPage from "./pages/DaftarJual";
 import Profile from "./pages/Profile";
+import InfoBidder from "./pages/InfoBidder";
 import Seller from "./pages/Seller";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -24,10 +26,12 @@ render(
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/produkbuyer" element={<ProductPageBuyer />} />
-        <Route path="/previewproduk" element={<ProductPage />} />
-        <Route path="/updateproduk" element={<UpdateProduct />} />
+        <Route path="/dashboardseller/:id" element={<SellerPage />} />
+        <Route path="/previewproduk/:id" element={<ProductPage />} />
+        <Route path="/updateproduk/:id" element={<UpdateProduct />} />
         <Route path="/buatproduk" element={<CreateProduct />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/infopenawar" element={<InfoBidder />} />
         <Route path="/infoSeller" element={<Seller />} />
       </Routes>
     </Router>

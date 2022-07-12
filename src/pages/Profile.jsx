@@ -178,10 +178,10 @@ function About() {
                         <Form.Label>Kota*</Form.Label>
                         <select style={formBorder} ref={townField} className="form-select">
                             <option hidden>Pilih Kota</option>
-                            <option ref={townField} selected={data.town === "dkijakarta" ? "selected" : ""} value="dkijakarta">DKI Jakarta</option>
-                            <option ref={townField} selected={data.town === "jawabarat" ? "selected" : ""} value="jawabarat">Jawa Barat</option>
-                            <option ref={townField} selected={data.town === "jawatengah" ? "selected" : ""} value="jawatengah">Jawa Tengah</option>
-                            <option ref={townField} selected={data.town === "jawatimur" ? "selected" : ""} value="jawatimur">Jawa Timur</option>
+                            <option ref={townField} selected={data.town === "DKI Jakarta" ? "selected" : ""} value="DKI Jakarta">DKI Jakarta</option>
+                            <option ref={townField} selected={data.town === "Jawa Barat" ? "selected" : ""} value="Jawa Barat">Jawa Barat</option>
+                            <option ref={townField} selected={data.town === "Jawa Tengah" ? "selected" : ""} value="Jawa Tengah">Jawa Tengah</option>
+                            <option ref={townField} selected={data.town === "Jawa Timur" ? "selected" : ""} value="Jawa Timur">Jawa Timur</option>
                         </select>
                     </Form.Group>
                     <Form.Group className="mb-3">

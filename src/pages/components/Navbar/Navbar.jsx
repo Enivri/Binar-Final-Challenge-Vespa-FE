@@ -3,18 +3,54 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../../slices/userSlice";
+import { addSearch } from "../../../slices/searchingSlice";
+import { styled } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
 import axios from "axios";
 import { Navbar, Nav, Container, Form, ButtonNavbar, Button, Dropdown, DropdownButton, Offcanvas } from "react-bootstrap";
 import { FiLogIn, FiList, FiBell, FiUser, FiLogOut } from "react-icons/fi";
 import "../Navbar/navbar.css";
+
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    background: '#EEEEEE',
+    borderRadius: '16px',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    },
+    display: 'block',
+}));
+
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '35ch',
+        },
+    },
+}));
 
 export function HomeNavbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
+    const [data, setData] = useState({});
     const [open, setOpen] = React.useState(true);
     const [show, setShow] = useState(false);
+    const [searching, setSearching] = useState("");
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -22,6 +58,26 @@ export function HomeNavbar() {
     const colourButton = {
         backgroundColor: '#7126B5',
     };
+
+    const handleSearch = () => {
+        dispatch(
+            addSearch(searching)
+        )
+    }
+    const getUsers = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const responseUsers = await axios.get(`http://localhost:2000/v1/users`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            const dataUsers = await responseUsers.data.data;
+            setData(dataUsers)
+        } catch (err) {
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,32 +95,37 @@ export function HomeNavbar() {
                         },
                     }
                 );
+                // console.log(currentUserRequest.data.data.id)
 
-                const currentUserResponse = currentUserRequest.data;
+                const currentUserResponse = currentUserRequest.data.data.id;
+
+                // console.log(currentUserResponse)
 
                 if (currentUserResponse.status) {
                     dispatch(
                         addUser({
-                            user: currentUserResponse.data.user,
+                            user: currentUserResponse.user,
                             token: token,
                         })
                     );
-                    setUser(currentUserResponse.data.user);
+                    setUser(currentUserResponse.user);
                 }
+                // console.log(addUser)
+                // console.log(setUser)
             } catch (err) {
                 setIsLoggedIn(false);
             }
         };
-
+        handleSearch();
         fetchData();
-    }, []);
+        getUsers();
+    }, [searching]);
 
     const logout = () => {
         localStorage.removeItem("token");
 
         setIsLoggedIn(false);
         setUser({});
-
         navigate("/");
     };
 
@@ -75,7 +136,16 @@ export function HomeNavbar() {
                 <Container className="home-navbar" >
                     <Navbar.Brand className="logo" href="/"></Navbar.Brand>
                     <div className="me-auto">
-
+                        <Search>
+                            <SearchIcon className="search-icon" />
+                            <StyledInputBase
+                                onChange={(e) => {
+                                    setSearching(e.target.value)
+                                }}
+                                placeholder="Cari di sini …"
+                                inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </Search>
                     </div>
                     <div>
                         <Navbar.Toggle onClick={handleShow} aria-controls="off-canvas" />
@@ -95,10 +165,18 @@ export function HomeNavbar() {
 
                             ) : (
                                 <>
-                                    <FiList className="icon-list-header m-3" />
+                                    <Link to={`/dashboardseller/${data.id}`}>
+                                        <Button
+                                            variant="none"
+                                            className="mx-1"
+                                        >
+                                            <FiList className="icon-list-header m-3" />
+                                        </Button>
+                                    </Link>
                                     <FiBell className="icon-bell-header m-3" />
+
                                     <Button
-                                        variant="light"
+                                        variant="none"
                                         className="mx-1"
                                         href="/profile"
                                     >
@@ -110,7 +188,7 @@ export function HomeNavbar() {
                                         onClick={logout}
                                     >
                                         Logout
-                                        <FiLogOut className="mx-1"/>
+                                        <FiLogOut className="mx-1" />
                                     </Button>
                                     <Offcanvas show={show} onHide={handleClose} id="off-canvas">
                                         <Offcanvas.Header closeButton>
