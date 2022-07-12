@@ -167,7 +167,7 @@ function ProductPage() {
                                 </Link>
                             </Card.Body>
                         </Card>
-                        <Card className="card-body-seller">
+                        <Card className="card-body-buyer">
                             <Card.Body>
                                 <Row>
                                     <Col className="col-md-2">
