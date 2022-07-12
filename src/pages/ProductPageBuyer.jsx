@@ -2,13 +2,16 @@ import React from 'react';
 import { useRef, useState, useEffect } from "react";
 import { HomeNavbar } from "./components/Navbar/Navbar"
 import { useSelector } from "react-redux";
-import { Col, Row, Container, Button, Card, } from "react-bootstrap";
+import { Col, Row, Container, Button, Card, Form } from "react-bootstrap";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import { selectUser } from "../slices/userSlice";
 import axios from "axios";
 import "../css/product.css";
 import jamCasio from '../images/product.png'
 import imageSeller from '../images/profile.png'
+import Modal from 'react-bootstrap/Modal';
+
+
 
 
 function ProductPageBuyer() {
@@ -17,10 +20,30 @@ function ProductPageBuyer() {
     const userRedux = useSelector(selectUser);
     const [user, setUser] = useState(userRedux.creds);
 
+    // Modal
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const Button2 = {
+        backgroundColor: '#7126B5',
+        borderRadius: '16px',
+        fontSize: '14px',
+        width: '250px',
+    };
+
+    const modalStyle = {
+        backgroundColor: '#EEEEEE',
+        fontSize: '14px',
+        border: '0px',
+        borderRadius: '16px',
+    };
+
     const colourButton = {
         backgroundColor: '#7126B5',
         borderRadius: '10px',
     };
+
 
 
     useEffect(() => {
@@ -101,10 +124,53 @@ function ProductPageBuyer() {
                                 <Card.Title className="card-title1">Jam Tangan Casio</Card.Title>
                                 <Card.Text className="card-text1">Aksesoris</Card.Text>
                                 <Card.Title className="card-title1">Rp. 250.000</Card.Title>
-                                <Button style={colourButton} className="btn btn-buyer" type="submit">
-                                Saya tertarik dan ingin nego
+                                <Button style={colourButton} className="btn btn-buyer" type="submit" onClick={handleShow}>
+                                    Saya tertarik dan ingin nego
                                 </Button>
+                                <Modal show={show} onHide={handleClose} animation={true} size="sm" centered >
+
+                                    <Modal.Header closeButton ></Modal.Header>
+                                    <Modal.Body >
+                                        <div>
+                                            <p className="titlefont1">Masukkan Harga Tawarmu</p>
+                                            <p className="greyfont" style={{ fontSize: "14px" }}>Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu akan segera dihubungi penjual.</p>
+                                        </div>
+                                        <div>
+                                            <Card style={modalStyle}>
+                                                <div className='container'>
+                                                    <Row className='mb-3'>
+                                                        <Col xs={3} className='mt-4'>
+                                                            <img src={jamCasio} width="48px" height="48px" borderRadius='50px' />
+                                                        </Col>
+                                                        <Col>
+                                                        <div className='mt-4'>
+                                                            <p className="titlefont1">Jam Tangan Casio</p>
+                                                            <p className="greyfont">Rp 250.000</p>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                </div>
+                                            </Card>
+
+                                            <div className='mt-3'>
+                                                <Form>
+                                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                        <Form.Label className='titlefont1'>Harga Tawar</Form.Label>
+                                                        <Form.Control type="email" placeholder="Rp 0,00" style={{borderRadius:'10px'}}/>
+
+                                                    </Form.Group>
+                                                </Form>
+                                                <div className='btn center-block buttonWA'>
+                                                    <Button style={Button2} onClick={handleClose}>
+                                                        Kirim
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Modal.Body>
+                                </Modal>
                             </Card.Body>
+                            
                         </Card>
                         <Card className="card-body-buyer">
                             <Card.Body>
