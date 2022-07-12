@@ -98,10 +98,12 @@ export default function CreateProduct() {
 
             if (postResponse.status) {
                 setData(postResponse.data.created_product);
-
+                const endpointid = postResponse.data.created_product.user_id;
+                
                 if (isPublished) navigate("/");
-                else navigate("/dashboardseller")
+                else navigate(`/dashboardseller/${endpointid}`)
             }
+
         } catch (err) {
             console.log(err);
             const response = err.response.data;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link, } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
@@ -12,6 +12,7 @@ export function Product() {
     const [category, setCategory] = useState([""]);
     const [user, setUser] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const navigate = useNavigate();
 
     const searching = useSelector(state => state.search.search)
     const categories = category ? `&category=${category}` : "";
@@ -29,7 +30,9 @@ export function Product() {
         textColor: 'Black',
     };
 
-
+    const handleButton = () => {
+        post.user_id === user.id ? navigate('/updateproduk/${post.id}') : navigate(`/profile`)
+    };
 
     useEffect(() => {
         const getProductPublish = async () => {
@@ -114,7 +117,7 @@ export function Product() {
                                     </Card>
                                 </Col>,
                             </Link>
-                        )}
+                        ).reverse()}
                     </Row>
                 </Container>
             </Container>

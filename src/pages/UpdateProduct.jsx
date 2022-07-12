@@ -118,7 +118,7 @@ export default function InfoProduct() {
 
             if (createResponse.status) {
                 if (isPublished) navigate("/");
-                else navigate(`/previewproduk/${data.id}`)
+                else navigate(`/dashboardseller/${data.user_id}`)
             }
 
         } catch (err) {
