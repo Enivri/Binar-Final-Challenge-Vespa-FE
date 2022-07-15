@@ -113,7 +113,7 @@ export function SidebarUser() {
       <div className="navigasi-user">
         <Card className="p-3">
           <div className="d-flex gap-3">
-            <Card.Img src={`http://localhost:2000/public/files/${user.picture}`} style={{ width: "7%" }} />
+            <Card.Img src={`${user.picture}`} style={{ width: "7%" }} />
             <div>
               <Card.Text style={{ width: "100%" }} className="mb-0 fw-bold ">{user.name}</Card.Text>
               <Card.Text style={{ width: "100%" }} className="usertown">{user.town}</Card.Text>
