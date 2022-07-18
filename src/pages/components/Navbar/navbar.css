@@ -24,7 +24,7 @@
     margin-top:2rem;
     margin-bottom:2rem;
 }
-@media(max-width: 360px) {
+@media(max-width: 1000px) {
     .home-navbar {
         margin: 0;
         transform: scale(.9)

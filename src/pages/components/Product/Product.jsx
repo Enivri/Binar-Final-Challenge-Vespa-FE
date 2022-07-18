@@ -4,8 +4,6 @@ import { FiSearch } from "react-icons/fi";
 // import { HomeNavbar } from "../../components/Navbar/Navbar"
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import '../Product/Product.css';
@@ -79,7 +77,7 @@ export function Product() {
     return (
         <>
             {/* <HomeNavbar /> */}
-            <Container className="pt-5" id="btn-category">
+            <Container className="pt-5 productComp" id="btn-category">
                 <h5 className="fw-bold tittle-category">Telusuri Kategori</h5>
                 <div className="button-group pt-2">
                     <Button style={colourButton} onClick={() => setCategory(null)} className="me-4 buttonSection bg-color-secondary border-0 active">
@@ -105,45 +103,30 @@ export function Product() {
 
                 <div className="owl-carousel">
                     <OwlCarousel items={1}
-                        className="owl-theme mt-5"
-                        left
-                        autoplay={true}
-                        stagePadding={2}
-                        loop={true}
-                        margin={5}
-                        lazyLoad={true}
-                        dots={false} >
+                        className="owl-theme mt-5" >
                         <div className="item">
-                            <div className="slider1">
+                            <div className="carouselBut">
                                 <Button style={colourButton} onClick={() => setCategory(null)} className="me-4 buttonSection bg-color-secondary border-0 active">
                                     <FiSearch className="me-1 mb-1" />
                                     Semua
                                 </Button>
                             </div>
-                        </div>
-                        <div className="item">
-                            <div className="slider2">
+                            <div className="carouselBut">
                                 <Button style={button2} onClick={() => setCategory("Hobi")} className="me-4 buttonSection colour border-0">
                                     <FiSearch className="me-1 mb-1" /> Hobi
                                 </Button>
                             </div>
-                        </div>
-                        <div className="item">
-                            <div className="slider3">
+                            <div className="carouselBut">
                                 <Button style={button2} onClick={() => setCategory("Baju")} className="me-4 buttonSection colour border-0">
                                     <FiSearch className="me-1 mb-1" /> Baju
                                 </Button>
                             </div>
-                        </div>
-                        <div className="item">
-                            <div className="slider4">
+                            <div className="carouselBut">
                                 <Button style={button2} onClick={() => setCategory("Elektronik")} className="me-4 buttonSection colour border-0">
                                     <FiSearch className="me-1 mb-1" /> Elektronik
                                 </Button>
                             </div>
-                        </div>
-                        <div className="item">
-                            <div className="slider5">
+                            <div className="carouselBut">
                                 <Button style={button2} onClick={() => setCategory("Kesehatan")} className="me-4 buttonSection colour border-0">
                                     <FiSearch className="me-1 mb-1" /> Kesehatan
                                 </Button>
@@ -152,11 +135,11 @@ export function Product() {
                     </OwlCarousel>
                 </div>
 
-                <Container className="mt-5">
+                <Container className="mt-5 productCard">
                     <Row md={6} className="mb-3">
                         {post.map((post) =>
                             <Col key={post.id} className="mb-3">
-                                <Card >
+                                <Card>
                                     <Card.Img variant="top" className="p-2 cardimg" src={`http://localhost:2000/public/files/${post.picture}`} />
                                     <Card.Body>
                                         <Card.Title className="cut-text">{post.name}</Card.Title>

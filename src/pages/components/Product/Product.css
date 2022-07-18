@@ -99,12 +99,31 @@
 @media(max-width: 1000px){
     .tittle-category{
         width: 100%;
-        margin-left: 0;
+        margin-left: 5rem;
     }
     .button-group{
         display: none;
     }
     .owl-carousel{
+        display: inline-block;
+        transform: scale(.9);
+        width: 45em;
+        margin-left: 0;
+    }
+    .carouselBut{
+        margin-left: 0;
+        margin-right: 0;
+        position: relative;
+        display: inline-block;
+
+    }
+    .productComp{
+        margin-left:0;
+        margin-right:0;
+        display: block;
+    }
+    .productCard{
+        transform: scale(0.8);
         display: block;
     }
 
