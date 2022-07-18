@@ -136,9 +136,9 @@ export function Product() {
                 </div>
 
                 <Container className="mt-5 productCard">
-                    <Row md={6} className="mb-3">
+                    <Row md={6} className="mb-3 rowCard">
                         {post.map((post) =>
-                            <Col key={post.id} className="mb-3">
+                            <Col key={post.id} className="mb-3 productComp">
                                 <Card>
                                     <Card.Img variant="top" className="p-2 cardimg" src={`http://localhost:2000/public/files/${post.picture}`} />
                                     <Card.Body>

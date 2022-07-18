@@ -48,10 +48,11 @@
 
 @media(max-width: 1000px) {
     .mt-5{
-        display: none;
+        display: block;
     }
     .owl-carousel{
-        display: none;
+        display: inline-block;
+        transform: scale(.9);
     }
     .item {
         transform: scale(0.9);
