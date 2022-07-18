@@ -92,3 +92,21 @@
     color: #8A8A8A;
 
 }
+.owl-carousel{
+    display: none;
+}
+
+@media(max-width: 1000px){
+    .tittle-category{
+        width: 100%;
+        margin-left: 0;
+    }
+    .button-group{
+        display: none;
+    }
+    .owl-carousel{
+        display: block;
+    }
+
+
+}

@@ -115,20 +115,21 @@ export function HomeNavbar() {
             <Navbar expand="lg" variant="light" >
                 <Container className="home-navbar" >
                     <Navbar.Brand className="logo" href="/"></Navbar.Brand>
-                    <div className="me-auto">
-                        <Search>
-                            <SearchIcon className="search-icon" />
+                    <div className="me-auto searchNav">
+                        <div className="search">
+                            <SearchIcon/>
                             <StyledInputBase
                                 onChange={(e) => {
                                     setSearching(e.target.value)
                                 }}
                                 placeholder="Cari di sini …"
                                 inputProps={{ 'aria-label': 'search' }}
+                                className="searchNav"
                             />
-                        </Search>
+                        </div>
                     </div>
                     <div>
-                        <Navbar.Toggle onClick={handleShow} aria-controls="off-canvas" />
+                        <Navbar.Toggle onClick={handleShow} aria-controls="off-canvas" className="togler" />
                         <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
                             {!isLoggedIn ? (
                                 <Navbar.Offcanvas show={show} onHide={handleClose} id="off-canvas">

@@ -20,22 +20,26 @@ export function Carousel() {
                 dots={false} >
 
                 <div className="item">
-                    <div className="">
+                    <div className="slider1">
+                        <img src={PICT1} className="image" alt="Foto produk" />
+                    </div>
+                </div>
+                <div className="item">
+                    <div className="slider2">
                         <img src={PICT1} className="radius-large" alt="Foto produk" />
                     </div>
                 </div>
                 <div className="item">
-                    <div className="">
-                        <img src={PICT1} className="radius-large" alt="Foto produk" />
-                    </div>
-                </div>
-                <div className="item">
-                    <div className="">
+                    <div className="slider3">
                         <img src={PICT1} className="radius-large" alt="Foto produk" />
                     </div>
                 </div>
 
             </OwlCarousel>
+            <div className="pict1">
+                        <img src={PICT1} className="image" alt="Foto produk" />
+                    </div>
+                    
         </>
     );
 }
