@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
 import UserImage from "../../../images/Rectangle-33.png";
+import "./sidebar.css";
 
 export function SidebarCategory() {
   return (

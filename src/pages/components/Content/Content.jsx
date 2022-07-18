@@ -3,7 +3,7 @@ import { Card, Button, Container, Form } from "react-bootstrap";
 import { FiPlus } from "react-icons/fi";
 import ImageUser from "../../../images/Rectangle-23.png";
 import firstImage from "../../../images/Rectangle-23.png";
-import "../../../css/style.css";
+import "./content.css";
 
 export function Content() {
   const title = {
@@ -37,6 +37,76 @@ export function Content() {
           </Form.Group>
         </div>
         <div className="px-2 w-100">
+          <Card>
+            <Card.Img variant="top" src={firstImage} style={image} />
+            <Card.Body className="p-2">
+              <Card.Title className="mb-0" style={title}>
+                Jam Tangan Casio
+              </Card.Title>
+              <p className="mb-0" style={accesoris}>
+                Aksesoris
+              </p>
+              <Card.Text className="mb-1">Rp 250.000</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="px-2">
+          <Card>
+            <Card.Img variant="top" src={firstImage} style={image} />
+            <Card.Body className="p-2">
+              <Card.Title className="mb-0" style={title}>
+                Jam Tangan Casio
+              </Card.Title>
+              <p className="mb-0" style={accesoris}>
+                Aksesoris
+              </p>
+              <Card.Text className="mb-1">Rp 250.000</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="px-2">
+          <Card>
+            <Card.Img variant="top" src={firstImage} style={image} />
+            <Card.Body className="p-2">
+              <Card.Title className="mb-0" style={title}>
+                Jam Tangan Casio
+              </Card.Title>
+              <p className="mb-0" style={accesoris}>
+                Aksesoris
+              </p>
+              <Card.Text className="mb-1">Rp 250.000</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="px-2">
+          <Card>
+            <Card.Img variant="top" src={firstImage} style={image} />
+            <Card.Body className="p-2">
+              <Card.Title className="mb-0" style={title}>
+                Jam Tangan Casio
+              </Card.Title>
+              <p className="mb-0" style={accesoris}>
+                Aksesoris
+              </p>
+              <Card.Text className="mb-1">Rp 250.000</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="px-2">
+          <Card>
+            <Card.Img variant="top" src={firstImage} style={image} />
+            <Card.Body className="p-2">
+              <Card.Title className="mb-0" style={title}>
+                Jam Tangan Casio
+              </Card.Title>
+              <p className="mb-0" style={accesoris}>
+                Aksesoris
+              </p>
+              <Card.Text className="mb-1">Rp 250.000</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="px-2">
           <Card>
             <Card.Img variant="top" src={firstImage} style={image} />
             <Card.Body className="p-2">
