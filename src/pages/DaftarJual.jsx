@@ -1,12 +1,67 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
+import { Navigate, Link, useParams, useNavigate } from "react-router-dom";
 import { HomeNavbar } from "./components/Navbar/Navbar";
 import { SidebarUser } from "./components/Sidebar/Sidebar";
 import { FiPlus, FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
 import { Row, Col, Card, Button, Container, Form } from "react-bootstrap";
 import firstImage from "../images/Rectangle-23.png";
+import axios from "axios";
 import "../css/daftarjual.css";
 
 export default function DaftarJual() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [post, setPost] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [user, setUser] = useState({});
+  const [toogleCategory, setToogleCategory] = useState(1)
+
+  useEffect(() => {
+    const validateLogin = async () => {
+      try {
+        // Check status user login
+        // 1. Get token from localStorage
+        const token = localStorage.getItem("token");
+
+        // 2. Check token validity from API
+        const currentUserRequest = await axios.get(
+          "http://localhost:2000/v1/users",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+          setUser(currentUserResponse.data.user);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    const getProduct = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const responseProduct = await axios.get(`http://localhost:2000/v1/product/users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+        })
+        console.log(responseProduct)
+        // console.log(getProduct)
+        const dataProduct = await responseProduct.data.data.posts;
+        setPost(dataProduct)
+        console.log(dataProduct);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getProduct();
+  }, [id]);
 
   const title = {
     fontSize: "14px",
@@ -35,7 +90,7 @@ export default function DaftarJual() {
 
       <Container className="mt-4 page-daftar-jual" style={{ width: "70%" }}>
         <h5 className="fw-bold mb-3">Daftar Jual Saya</h5>
-        
+
         {/* User Card */}
         <Row>
           <Col md={12}>
@@ -78,20 +133,21 @@ export default function DaftarJual() {
           <Col md={8}>
             <div>
               <div className="content-product">
-                <div className="px-2">
-                  <Form.Group className="mb-3 upload-product d-flex  ">
-                    <Button
-                      variant="secondary"
-                      className="w-100 d-flex upload-image-product gap-2  align-items-center justify-content-center"
-                    >
-                      <FiPlus
-                        style={{ fontSize: "24px", divor: "rgba(138, 138, 138, 1)" }}
-                      />{" "}
-                      <p>Tambah Produk</p>
-                      <Form.Control type="file" />
-                    </Button>
-                  </Form.Group>
-                </div>
+                <Link to="/buatproduk">
+                  <div className="px-2">
+                    <Form.Group className="mb-3 upload-product d-flex  ">
+                      <Button
+                        variant="secondary"
+                        className="w-100 d-flex upload-image-product gap-2  align-items-center justify-content-center"
+                      >
+                        <FiPlus
+                          style={{ fontSize: "24px", divor: "rgba(138, 138, 138, 1)" }}
+                        />{" "}
+                        <p>Tambah Produk</p>
+                      </Button>
+                    </Form.Group>
+                  </div>
+                </Link>
                 <div className="px-2 w-100">
                   <Card>
                     <Card.Img variant="top" src={firstImage} style={image} />
