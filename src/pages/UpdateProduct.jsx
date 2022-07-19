@@ -31,6 +31,28 @@ export default function InfoProduct() {
         borderRadius: '16px',
     }
 
+    const getProduct = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const responseProduct = await axios.get(`http://localhost:2000/v1/product/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            })
+
+            console.log(token)
+            console.log(responseProduct)
+            // console.log(getProduct)
+            const dataProduct = await responseProduct.data.data.posts[0];
+            setData(dataProduct)
+            console.log(dataProduct);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -80,10 +102,15 @@ export default function InfoProduct() {
                     },
                 }
             );
-
+            console.log(token)
+            console.log(createRequest)
             const createResponse = createRequest.data;
 
-            if (createResponse.status) navigate("/");
+            if (createResponse.status) {
+                if (isPublished) navigate("/");
+                else navigate(`/dashboardseller/${data.user_id}`)
+            }
+
         } catch (err) {
             const response = err.response.data;
 
@@ -93,6 +120,7 @@ export default function InfoProduct() {
             });
         }
     };
+    console.log(onUpdate)
 
     return isLoggedIn ? (
         <div>

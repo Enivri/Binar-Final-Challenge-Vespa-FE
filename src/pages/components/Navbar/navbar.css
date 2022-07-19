@@ -3,6 +3,11 @@
     height: 34px;
     background-color: #4B1979;
 }
+.search {
+    background-color:whitesmoke;
+    border-radius: 2em;
+}
+
 .outline-dark{
     color: rgb(0, 0, 0);
 }
@@ -18,4 +23,27 @@
     margin-left:16rem;
     margin-top:2rem;
     margin-bottom:2rem;
+}
+@media screen and (max-width: 1023px){
+    .logo{
+        display: none;
+    }
+    .search{
+        margin-right: auto;
+        left: 15%;
+        position: relative;
+        display: flex;
+        float: right;
+        width: 80%;
+    }
+    .togler{
+        position: relative;
+        display: flex;
+        float: left;
+        right: 80%;
+    }
+    
+    
+
+
 }

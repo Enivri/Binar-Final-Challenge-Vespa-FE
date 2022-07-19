@@ -92,9 +92,13 @@ export default function CreateProduct() {
             console.log(postResponse)
 
             if (postResponse.status) {
-                if(isPublished) navigate("/");
-                else navigate("/previewproduk")
+                setData(postResponse.data.created_product);
+                const endpointid = postResponse.data.created_product.user_id;
+
+                if (isPublished) navigate("/");
+                else navigate(`/dashboardseller/${endpointid}`)
             }
+
         } catch (err) {
             console.log(err);
             const response = err.response.data;
@@ -189,14 +193,16 @@ export default function CreateProduct() {
                     />
                     <Row>
                         <Col>
-                            <Button  style={colourButton} onClick={(e) => onPost(e, false)} className="myButton7 w-100" type="submit">
+                            <Button style={colourButton} onClick={(e) => onPost(e, false)} className="myButton7 w-100" type="submit">
                                 Preview
                             </Button>
                         </Col>
                         <Col>
+
                             <Button style={colourButton} onClick={(e) => onPost(e, true)} className="myButton6 w-100" type="submit">
                                 Terbitkan
                             </Button>
+
                         </Col>
                     </Row>
                     {errorResponse.isError && (
@@ -204,7 +210,7 @@ export default function CreateProduct() {
                     )}
                 </Form>
             </Container>
-        </div>
+        </div >
     ) : (
         <Navigate to="/login" replace />);
 }
