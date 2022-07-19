@@ -30,10 +30,6 @@ export function Product() {
         textColor: 'Black',
     };
 
-    const handleButton = () => {
-        post.user_id === user.id ? navigate('/updateproduk/${post.id}') : navigate(`/profile`)
-    };
-
     useEffect(() => {
         const getProductPublish = async () => {
             try {
@@ -105,10 +101,10 @@ export function Product() {
                 <Container className="mt-5">
                     <Row md={6} className="mb-3">
                         {post.map((post) =>
-                            <Link to={`/updateproduk/${post.id}`} style={{ textDecoration: "none", color: "black" }}>
+                            <Link to={`/previewproduk/${post.id}`} style={{ textDecoration: "none", color: "black" }}>
                                 <Col key={post.id} className="mb-3">
                                     <Card >
-                                        <Card.Img variant="top" className="p-2 cardimg" src={`http://localhost:2000/public/files/${post.picture}`} />
+                                        <Card.Img variant="top" className="p-2 cardimg" src={post.picture} />
                                         <Card.Body>
                                             <Card.Title className="cut-text">{post.name}</Card.Title>
                                             <p className="text-black-50 categorycard">{post.category}</p>
