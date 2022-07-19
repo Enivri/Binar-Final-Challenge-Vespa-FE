@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
-// import { HomeNavbar } from "../../components/Navbar/Navbar"
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import OwlCarousel from "react-owl-carousel";
 import axios from "axios";
@@ -13,6 +13,8 @@ export function Product() {
     const [category, setCategory] = useState([""]);
     const [user, setUser] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const navigate = useNavigate();
+
 
     const searching = useSelector(state => state.search.search)
     const categories = category ? `&category=${category}` : "";
@@ -29,8 +31,6 @@ export function Product() {
         backgroundColor: '#b8a1cf',
         textColor: 'Black',
     };
-
-
 
     useEffect(() => {
         const getProductPublish = async () => {
@@ -107,17 +107,20 @@ export function Product() {
                 <Container className="mt-5 productCard">
                     <Row md={6} className="mb-3 rowCard">
                         {post.map((post) =>
-                            <Col key={post.id} className="mb-3 productComp">
-                                <Card>
-                                    <Card.Img variant="top" className="p-2 cardimg" src={`http://localhost:2000/public/files/${post.picture}`} />
-                                    <Card.Body>
-                                        <Card.Title className="cut-text">{post.name}</Card.Title>
-                                        <p className="text-black-50 categorycard">{post.category}</p>
-                                        <Card.Text>Rp {post.price}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>,
-                        )}
+                            <Link to={`/previewproduk/${post.id}`} style={{ textDecoration: "none", color: "black" }}>
+                                <Col key={post.id} className="mb-3">
+                                    <Card >
+                                        <Card.Img variant="top" className="p-2 cardimg" src={post.picture} />
+                                        <Card.Body>
+                                            <Card.Title className="cut-text">{post.name}</Card.Title>
+                                            <p className="text-black-50 categorycard">{post.category}</p>
+                                            <Card.Text>Rp {post.price.toLocaleString()}</Card.Text>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>,
+                            </Link>
+                        ).reverse()}
+
                     </Row>
 
                 </Container>

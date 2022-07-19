@@ -2,8 +2,9 @@ import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Col, Row, Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Navigate, Link } from "react-router-dom";
+import { useNavigate, Navigate, useParams, Link } from "react-router-dom";
 import { selectUser } from "../slices/userSlice";
+
 import { FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/style.css";
@@ -13,6 +14,8 @@ export default function CreateProduct() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const userRedux = useSelector(selectUser);
     const [user, setUser] = useState(userRedux.creds);
+    const { id } = useParams();
+    const [data, setData] = useState([]);
     const nameField = useRef("");
     const priceField = useRef("");
     const categoryField = useRef("");
@@ -33,6 +36,8 @@ export default function CreateProduct() {
     const borderRadius = {
         borderRadius: '16px',
     }
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,7 +66,7 @@ export default function CreateProduct() {
             }
         };
         fetchData();
-    }, [])
+    }, [id])
 
     const onPost = async (e, isPublished) => {
         e.preventDefault();
@@ -92,9 +97,13 @@ export default function CreateProduct() {
             console.log(postResponse)
 
             if (postResponse.status) {
-                if(isPublished) navigate("/");
-                else navigate("/previewproduk")
+                setData(postResponse.data.created_product);
+                const endpointid = postResponse.data.created_product.user_id;
+                
+                if (isPublished) navigate("/");
+                else navigate(`/dashboardseller/${endpointid}`)
             }
+
         } catch (err) {
             console.log(err);
             const response = err.response.data;
@@ -189,14 +198,16 @@ export default function CreateProduct() {
                     />
                     <Row>
                         <Col>
-                            <Button  style={colourButton} onClick={(e) => onPost(e, false)} className="myButton7 w-100" type="submit">
+                            <Button style={colourButton} onClick={(e) => onPost(e, false)} className="myButton7 w-100" type="submit">
                                 Preview
                             </Button>
                         </Col>
                         <Col>
+
                             <Button style={colourButton} onClick={(e) => onPost(e, true)} className="myButton6 w-100" type="submit">
                                 Terbitkan
                             </Button>
+
                         </Col>
                     </Row>
                     {errorResponse.isError && (
@@ -204,7 +215,7 @@ export default function CreateProduct() {
                     )}
                 </Form>
             </Container>
-        </div>
+        </div >
     ) : (
         <Navigate to="/login" replace />);
 }
