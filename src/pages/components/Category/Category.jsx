@@ -4,6 +4,7 @@ import { Container, Button } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
 import { BsPlus } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import "./category.css";
 
 export function Category() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);

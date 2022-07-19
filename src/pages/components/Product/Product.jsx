@@ -81,27 +81,27 @@ export function Product() {
             <Container className="pt-5 buttonCategory" id="btn-category">
                 <h5 className="fw-bold tittle-category">Telusuri Kategori</h5>
                 <div>
-                <div className="d-flex button-group pt-2 productCategory">
-                    <Button style={colourButton} onClick={() => setCategory(null)} className="d-flex me-4 buttonSection bg-color-secondary border-0 active">
-                        <FiSearch className="me-1 mb-1" />
-                        Semua
-                    </Button>
-                    <Button style={button2} onClick={() => setCategory("Hobi")} className="d-flex me-4 buttonSection colour border-0">
-                        <FiSearch className="me-1 mb-1" /> Hobi
-                    </Button>
-                    <Button style={button2} onClick={() => setCategory("Kendaraan")} className="d-flex me-4 buttonSection colour border-0">
-                        <FiSearch className="me-1 mb-1" /> Kendaraan
-                    </Button>
-                    <Button style={button2} onClick={() => setCategory("Baju")} className="d-flex me-4 buttonSection colour border-0">
-                        <FiSearch className="me-1 mb-1" /> Baju
-                    </Button>
-                    <Button style={button2} onClick={() => setCategory("Elektronik")} className="d-flex me-4 buttonSection colour border-0">
-                        <FiSearch className="me-1 mb-1" /> Elektronik
-                    </Button>
-                    <Button style={button2} onClick={() => setCategory("Kesehatan")} className="d-flex me-4 buttonSection colour border-0">
-                        <FiSearch className="me-1 mb-1" /> Kesehatan
-                    </Button>
-                </div>
+                    <div className="d-flex button-group pt-2 productCategory">
+                        <Button style={colourButton} onClick={() => setCategory(null)} className="d-flex me-4 buttonSection bg-color-secondary border-0 active">
+                            <FiSearch className="me-1 mb-1" />
+                            Semua
+                        </Button>
+                        <Button style={button2} onClick={() => setCategory("Hobi")} className="d-flex me-4 buttonSection colour border-0">
+                            <FiSearch className="me-1 mb-1" /> Hobi
+                        </Button>
+                        <Button style={button2} onClick={() => setCategory("Kendaraan")} className="d-flex me-4 buttonSection colour border-0">
+                            <FiSearch className="me-1 mb-1" /> Kendaraan
+                        </Button>
+                        <Button style={button2} onClick={() => setCategory("Baju")} className="d-flex me-4 buttonSection colour border-0">
+                            <FiSearch className="me-1 mb-1" /> Baju
+                        </Button>
+                        <Button style={button2} onClick={() => setCategory("Elektronik")} className="d-flex me-4 buttonSection colour border-0">
+                            <FiSearch className="me-1 mb-1" /> Elektronik
+                        </Button>
+                        <Button style={button2} onClick={() => setCategory("Kesehatan")} className="d-flex me-4 buttonSection colour border-0">
+                            <FiSearch className="me-1 mb-1" /> Kesehatan
+                        </Button>
+                    </div>
                 </div>
 
                 <Container className="mt-5 product-card">

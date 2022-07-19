@@ -289,7 +289,7 @@ function ProductPage() {
                                         onClick={(e) => onBid(e)} >
                                         Kirim
                                     </Button>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </Modal.Body>

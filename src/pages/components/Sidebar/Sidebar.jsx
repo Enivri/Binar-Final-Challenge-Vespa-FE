@@ -6,36 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../../slices/userSlice";
 import { addSearch } from "../../../slices/searchingSlice";
 import { Card, Button } from "react-bootstrap";
-import { FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
 import UserImage from "../../../images/Rectangle-33.png";
-import "./Sidebar.css"
+import "./sidebar.css"
 
-export function SidebarCategory() {
-  return (
-    <>
-      <div className="sidebar-category">
-        <div className="p-3 card-sidebar-category">
-          <h6 className="fw-bold pt-2 px-2">Kategori</h6>
-          <div className="card-sidebar-catergory_body px-2 py-2">
-            <Button className="d-flex gap-2 align-items-center w-100 p-0 mb-2">
-              <FiBox /> Produk <FiChevronRight className="ms-auto" />
-            </Button>
 
-            <Button className="d-flex gap-2 align-items-center w-100 p-0 mb-2">
-              <FiHeart /> Diminati <FiChevronRight className="ms-auto" />
-            </Button>
-
-            <Button className="d-flex gap-2 align-items-center w-100 p-0">
-              <FiDollarSign />
-              Terjual
-              <FiChevronRight className="ms-auto" />
-            </Button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
 
 export function SidebarUser() {
   const navigate = useNavigate();

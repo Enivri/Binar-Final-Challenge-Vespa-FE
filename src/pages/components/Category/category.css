@@ -1,0 +1,113 @@
+/* category */
+.category div button.button-sell {
+    width: 25%;
+    margin: 0 37.5%;
+  }
+
+  .category .button-category {
+    overflow-x: scroll;
+  }
+  .category .button-category::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .card-sidebar-catergory_body {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    top: 30%;
+    left: 0;
+  }
+
+  .sidebar-category .card-sidebar-category.card {
+    position: relative;
+    overflow-x: auto;
+    height: 60px;
+  }
+
+  .sidebar-category .card-sidebar-category.card h6 {
+    display: none;
+  }
+
+  .sidebar-category .card-sidebar-category button {
+    background-color: rgba(226, 212, 240, 1) !important;
+    padding: 0 10px !important;
+    border-radius: 12px;
+    height: 20%;
+    border-bottom: transparent !important;
+  }
+  /* card */
+  .card-content {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    grid-auto-flow: row;
+  }
+
+/* gak ngaruh */
+/* form */
+/* form login */
+.row-login {
+  margin: 0;
+}
+
+.row-login .col:nth-child(2) svg {
+  display: none;
+}
+
+.row-register .col:nth-child(2) svg {
+  display: none;
+}
+
+/* form info akun */
+.upload {
+  margin: 20px 48%;
+}
+.upload .upload-image {
+  position: relative;
+  padding: 30px 33px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.upload .upload-image input[type="file"] {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(3);
+  opacity: 0;
+}
+
+/* form info product */
+.upload-product .upload-image-product {
+  width: 18%;
+  position: relative;
+  padding: 30px 33px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.upload-product .upload-image-product input[type="file"] {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(5);
+  opacity: 0;
+}
+
+/* form info akun */
+.form-info-acc h5 {
+  display: none;
+}
+.form-info-acc form .form-body {
+  transform: translate(55%);
+}
+
+.form-info-product h5 {
+  display: none;
+}
+.form-info-product form .form-body {
+  transform: translate(55%);
+}

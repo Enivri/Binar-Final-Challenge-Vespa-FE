@@ -137,7 +137,7 @@ export function HomeNavbar() {
                     <Navbar.Brand className="logo" href="/"></Navbar.Brand>
                     <div className="me-auto searchNav">
                         <div className="search">
-                            <SearchIcon/>
+                            <SearchIcon />
                             <StyledInputBase
                                 onChange={(e) => {
                                     setSearching(e.target.value)
@@ -149,7 +149,7 @@ export function HomeNavbar() {
                         </div>
                     </div>
                     <div className="togler">
-                        <Navbar.Toggle onClick={handleShow} aria-controls="off-canvas"  />
+                        <Navbar.Toggle onClick={handleShow} aria-controls="off-canvas" />
                         <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
                             {!isLoggedIn ? (
                                 <Navbar.Offcanvas show={show} onHide={handleClose} id="off-canvas">
