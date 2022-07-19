@@ -38,43 +38,37 @@
     position: absolute;
     margin-top: 200px;
 }
-.pict1 {
-    display: none;
-}
 .owl-margin {
     margin-top: 5;
 }
+.slider {
+    display: none;
+}
 
 
-@media(max-width: 1000px) {
-    .mt-5{
+
+@media screen and (max-width: 1023px){
+    .sliderCarousel{
+        display: none;
+    }
+    .slider{
         display: block;
+        height: 200px;
     }
-    .owl-carousel{
-        display: inline-block;
-        transform: scale(.9);
-    }
-    .item {
-        transform: scale(0.9);
-        margin: 0;
-    }
-    .slider1{
-        display: none;
-    }
-    .slider2 {
-        display: none;
-    }
-    .slider3 {
-        display: none;
-    }
-    .pict1{
-        display: block;
-        padding: 0;
-        margin: 0;
-        height: 20%;
-    }
-    .image{
-        width: 100%;
-    }
+    .slider .owl-theme .owl-nav { 
+        display: none; 
+      } 
+    .slider .owl-theme .owl-dots { 
+        display: none; 
+      }       
+      .owl-carousel{
+          height: 200px;
+      }
+      .slider .slider-card{
+          height: 200px;
+      }
+      .imgCarousel img{
+          height: 200px;
+      }
 }
 

@@ -112,7 +112,7 @@ export function HomeNavbar() {
 
     return (
         <>
-            <Navbar expand="lg" variant="light" >
+            <Navbar expand="lg" variant="light">
                 <Container className="home-navbar" >
                     <Navbar.Brand className="logo" href="/"></Navbar.Brand>
                     <div className="me-auto searchNav">
@@ -128,8 +128,8 @@ export function HomeNavbar() {
                             />
                         </div>
                     </div>
-                    <div>
-                        <Navbar.Toggle onClick={handleShow} aria-controls="off-canvas" className="togler" />
+                    <div className="togler">
+                        <Navbar.Toggle onClick={handleShow} aria-controls="off-canvas"  />
                         <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
                             {!isLoggedIn ? (
                                 <Navbar.Offcanvas show={show} onHide={handleClose} id="off-canvas">

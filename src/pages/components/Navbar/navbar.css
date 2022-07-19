@@ -24,25 +24,26 @@
     margin-top:2rem;
     margin-bottom:2rem;
 }
-@media(max-width: 1000px) {
-    .home-navbar {
-        margin: 0;
-        transform: scale(.9)
-    }
-    .home-navbar .logo {
+@media screen and (max-width: 1023px){
+    .logo{
         display: none;
     }
-    .search {
-        width: 100%;
-        min-width: 3em;
+    .search{
+        margin-right: auto;
+        left: 15%;
+        position: relative;
+        display: flex;
+        float: right;
+        width: 80%;
     }
-    .searchNav {
-        width: 75%;
-        min-width: 3em;
-    }
-    .home-navbar .togler {
+    .togler{
+        position: relative;
+        display: flex;
         float: left;
+        right: 80%;
     }
+    
+    
 
 
 }
