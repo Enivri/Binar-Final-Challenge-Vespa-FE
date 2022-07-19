@@ -7,7 +7,7 @@ import { addUser } from "../../../slices/userSlice";
 import { addSearch } from "../../../slices/searchingSlice";
 import { Card, Button } from "react-bootstrap";
 import UserImage from "../../../images/Rectangle-33.png";
-import "./Sidebar.css"
+import "./sidebar.css"
 
 
 
