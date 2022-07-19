@@ -4,9 +4,7 @@ import { SidebarUser } from "./components/Sidebar/Sidebar";
 import { FiPlus, FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
 import { Row, Col, Card, Button, Container, Form } from "react-bootstrap";
 import firstImage from "../images/Rectangle-23.png";
-import "../css/style.css";
-import "../pages/components/Content/content.css"
-import "../pages/components/Sidebar/sidebar.css"
+import "../css/daftarjual.css";
 
 export default function DaftarJual() {
 
