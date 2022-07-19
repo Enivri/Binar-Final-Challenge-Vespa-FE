@@ -113,8 +113,8 @@ export function Content() {
                       </p>
                       <Card.Text className="mb-1">Rp.{post.price}</Card.Text>
                     </Card.Body>
-                    <Badge bg={post.isPublish === true ? "primary" : "warning"}>
-                      {post.isPublish === true ? "Produk sudah di publish" : "Produk belum di publish"}
+                    <Badge bg={post.isPublished === true ? "primary" : "warning"}>
+                      {post.isPublished === true ? "Produk sudah di publish" : "Produk belum di publish"}
                     </Badge>
                   </Card>
                 </Col>,
