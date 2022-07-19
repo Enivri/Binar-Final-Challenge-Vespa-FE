@@ -120,9 +120,7 @@ export function Product() {
                                 </Col>,
                             </Link>
                         ).reverse()}
-
                     </Row>
-
                 </Container>
             </Container>
         </>

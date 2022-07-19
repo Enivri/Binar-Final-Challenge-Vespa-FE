@@ -161,13 +161,13 @@ export default function DaftarJual() {
                           </p>
                           <Card.Text className="mb-1">Rp.{post.price}</Card.Text>
                         </Card.Body>
-                        {/* <Badge bg={post.isPublished === true ? "primary" : "warning"}>
+                        <Badge bg={post.isPublished === true ? "primary" : "warning"}>
                           {post.isPublished === true ? "Produk sudah di publish" : "Produk belum di publish"}
-                        </Badge> */}
+                        </Badge>
                       </Card>
                     </div>
                   </Link>
-                )}
+                ).reverse()}
               </div>
             </div>
           </Col>
