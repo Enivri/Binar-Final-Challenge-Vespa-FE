@@ -3,8 +3,7 @@ import { Navigate, Link, useParams, useNavigate } from "react-router-dom";
 import { HomeNavbar } from "./components/Navbar/Navbar";
 import { SidebarUser } from "./components/Sidebar/Sidebar";
 import { FiPlus, FiBox, FiHeart, FiDollarSign, FiChevronRight } from "react-icons/fi";
-import { Row, Col, Card, Button, Container, Form } from "react-bootstrap";
-import firstImage from "../images/Rectangle-23.png";
+import { Row, Col, Card, Button, Container, Form, Badge } from "react-bootstrap";
 import axios from "axios";
 import "../css/daftarjual.css";
 
@@ -148,76 +147,27 @@ export default function DaftarJual() {
                     </Form.Group>
                   </div>
                 </Link>
-                <div className="px-2 w-100">
-                  <Card>
-                    <Card.Img variant="top" src={firstImage} style={image} />
-                    <Card.Body className="p-2">
-                      <Card.Title className="mb-0" style={title}>
-                        Jam Tangan Casio
-                      </Card.Title>
-                      <p className="mb-0" style={accesoris}>
-                        Aksesoris
-                      </p>
-                      <Card.Text className="mb-1">Rp 250.000</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
-                <div className="px-2">
-                  <Card>
-                    <Card.Img variant="top" src={firstImage} style={image} />
-                    <Card.Body className="p-2">
-                      <Card.Title className="mb-0" style={title}>
-                        Jam Tangan Casio
-                      </Card.Title>
-                      <p className="mb-0" style={accesoris}>
-                        Aksesoris
-                      </p>
-                      <Card.Text className="mb-1">Rp 250.000</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
-                <div className="px-2">
-                  <Card>
-                    <Card.Img variant="top" src={firstImage} style={image} />
-                    <Card.Body className="p-2">
-                      <Card.Title className="mb-0" style={title}>
-                        Jam Tangan Casio
-                      </Card.Title>
-                      <p className="mb-0" style={accesoris}>
-                        Aksesoris
-                      </p>
-                      <Card.Text className="mb-1">Rp 250.000</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
-                <div className="px-2">
-                  <Card>
-                    <Card.Img variant="top" src={firstImage} style={image} />
-                    <Card.Body className="p-2">
-                      <Card.Title className="mb-0" style={title}>
-                        Jam Tangan Casio
-                      </Card.Title>
-                      <p className="mb-0" style={accesoris}>
-                        Aksesoris
-                      </p>
-                      <Card.Text className="mb-1">Rp 250.000</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
-                <div className="px-2">
-                  <Card>
-                    <Card.Img variant="top" src={firstImage} style={image} />
-                    <Card.Body className="p-2">
-                      <Card.Title className="mb-0" style={title}>
-                        Jam Tangan Casio
-                      </Card.Title>
-                      <p className="mb-0" style={accesoris}>
-                        Aksesoris
-                      </p>
-                      <Card.Text className="mb-1">Rp 250.000</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
+                {post.map((post) =>
+                  <Link to={`/previewproduk/${post.id}`} style={{ textDecoration: "none", color: "black" }}>
+                    <div className="px-2 w-100">
+                      <Card>
+                        <Card.Img variant="top" src={post.picture} style={image} />
+                        <Card.Body className="p-2">
+                          <Card.Title className="mb-0" style={title}>
+                            {post.name}
+                          </Card.Title>
+                          <p className="mb-0" style={accesoris}>
+                            {post.category}
+                          </p>
+                          <Card.Text className="mb-1">Rp.{post.price}</Card.Text>
+                        </Card.Body>
+                        {/* <Badge bg={post.isPublished === true ? "primary" : "warning"}>
+                          {post.isPublished === true ? "Produk sudah di publish" : "Produk belum di publish"}
+                        </Badge> */}
+                      </Card>
+                    </div>
+                  </Link>
+                )}
               </div>
             </div>
           </Col>
