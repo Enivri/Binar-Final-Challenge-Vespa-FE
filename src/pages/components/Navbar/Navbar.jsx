@@ -45,7 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export function HomeNavbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
     const [open, setOpen] = React.useState(true);
     const [show, setShow] = useState(false);
