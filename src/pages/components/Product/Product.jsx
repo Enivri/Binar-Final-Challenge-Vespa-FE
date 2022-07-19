@@ -104,7 +104,7 @@ export function Product() {
                 </div>
                 </div>
 
-                <Container className="mt-5 product-card">
+                <Container className="mt-5 productCard">
                     <Row md={6} className="mb-3 rowCard">
                         {post.map((post) =>
                             <Link to={`/previewproduk/${post.id}`} style={{ textDecoration: "none", color: "black" }}>
