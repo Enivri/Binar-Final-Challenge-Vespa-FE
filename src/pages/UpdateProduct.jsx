@@ -45,9 +45,11 @@ export default function InfoProduct() {
                     Authorization: `Bearer ${token}`
                 },
             })
+
+            console.log(token)
             console.log(responseProduct)
             // console.log(getProduct)
-            const dataProduct = await responseProduct.data.data.posts;
+            const dataProduct = await responseProduct.data.data.posts[0];
             setData(dataProduct)
             console.log(dataProduct);
         } catch (err) {
@@ -112,7 +114,7 @@ export default function InfoProduct() {
                     },
                 }
             );
-            console.log(id)
+            console.log(token)
             console.log(createRequest)
             const createResponse = createRequest.data;
 
@@ -130,6 +132,7 @@ export default function InfoProduct() {
             });
         }
     };
+    console.log(onUpdate)
 
     return isLoggedIn ? (
         <div>
