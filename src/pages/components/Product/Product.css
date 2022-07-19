@@ -92,3 +92,27 @@
     color: #8A8A8A;
 
 }
+.owl-carousel{
+    display: none;
+}
+
+.buttonCategory .productCategory {
+    overflow-x: scroll;
+    display: inline-flex;
+}
+
+.buttonCategory .productCategory::-webkit-scrollbar { 
+    width: 0; 
+  }
+
+  @media screen and (max-width: 1023px){
+    .buttonCategory {
+        margin-top: 0;
+      }
+    
+      .card-content { 
+        display: grid; 
+        grid-template-columns: auto auto; 
+        grid-gap: 20px;
+      }
+}
