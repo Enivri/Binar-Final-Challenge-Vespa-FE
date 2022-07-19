@@ -45,7 +45,7 @@ export function Carousel() {
                 autoplay={true}
                 stagePadding={200}
                 loop={true}
-                margin={0}
+                margin={5}
                 lazyLoad={true}
                 dots={false}
 
