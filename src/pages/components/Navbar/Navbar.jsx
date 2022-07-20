@@ -47,6 +47,7 @@ export function HomeNavbar() {
     const dispatch = useDispatch();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
+    const [data, setData] = useState({});
     const [open, setOpen] = React.useState(true);
     const [show, setShow] = useState(false);
     const [searching, setSearching] = useState("");
@@ -62,6 +63,20 @@ export function HomeNavbar() {
         dispatch(
             addSearch(searching)
         )
+    }
+    const getUsers = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const responseUsers = await axios.get(`http://localhost:2000/v1/users`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            const dataUsers = await responseUsers.data.data;
+            setData(dataUsers)
+        } catch (err) {
+        }
     }
 
     useEffect(() => {
@@ -80,24 +95,30 @@ export function HomeNavbar() {
                         },
                     }
                 );
+                // console.log(currentUserRequest.data.data.id)
 
-                const currentUserResponse = currentUserRequest.data;
+                const currentUserResponse = currentUserRequest.data.data.id;
+
+                // console.log(currentUserResponse)
 
                 if (currentUserResponse.status) {
                     dispatch(
                         addUser({
-                            user: currentUserResponse.data.user,
+                            user: currentUserResponse.user,
                             token: token,
                         })
                     );
-                    setUser(currentUserResponse.data.user);
+                    setUser(currentUserResponse.user);
                 }
+                // console.log(addUser)
+                // console.log(setUser)
             } catch (err) {
                 setIsLoggedIn(false);
             }
         };
         handleSearch();
         fetchData();
+        getUsers();
     }, [searching]);
 
     const logout = () => {
@@ -105,29 +126,29 @@ export function HomeNavbar() {
 
         setIsLoggedIn(false);
         setUser({});
-
         navigate("/");
     };
 
 
     return (
         <>
-            <Navbar expand="lg" variant="light" >
+            <Navbar expand="lg" variant="light">
                 <Container className="home-navbar" >
                     <Navbar.Brand className="logo" href="/"></Navbar.Brand>
-                    <div className="me-auto">
-                        <Search>
-                            <SearchIcon className="search-icon" />
+                    <div className="me-auto searchNav">
+                        <div className="search">
+                            <SearchIcon />
                             <StyledInputBase
                                 onChange={(e) => {
                                     setSearching(e.target.value)
                                 }}
                                 placeholder="Cari di sini …"
                                 inputProps={{ 'aria-label': 'search' }}
+                                className="searchNav"
                             />
-                        </Search>
+                        </div>
                     </div>
-                    <div>
+                    <div className="togler">
                         <Navbar.Toggle onClick={handleShow} aria-controls="off-canvas" />
                         <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
                             {!isLoggedIn ? (
@@ -145,10 +166,18 @@ export function HomeNavbar() {
 
                             ) : (
                                 <>
-                                    <FiList className="icon-list-header m-3" />
+                                    <Link to={`/dashboardseller/${data.id}`}>
+                                        <Button
+                                            variant="none"
+                                            className="mx-1"
+                                        >
+                                            <FiList className="icon-list-header m-3" />
+                                        </Button>
+                                    </Link>
                                     <FiBell className="icon-bell-header m-3" />
+
                                     <Button
-                                        variant="light"
+                                        variant="none"
                                         className="mx-1"
                                         href="/profile"
                                     >
