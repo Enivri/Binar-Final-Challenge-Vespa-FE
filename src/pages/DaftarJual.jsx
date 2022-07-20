@@ -13,6 +13,7 @@ export default function DaftarJual() {
   const [post, setPost] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
+  const [interest, setInterest] = useState({});
   const [toogleCategory, setToogleCategory] = useState(1)
 
   useEffect(() => {
@@ -62,6 +63,28 @@ export default function DaftarJual() {
     getProduct();
   }, [id]);
 
+  useEffect(() => {
+    const interestData = async () => {
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.get(`http://localhost:2000/v1/transaction/owners/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+      console.log(response);
+
+      const data = await response.data.data.posts;
+      console.log(data);
+
+      setInterest(data);
+    };
+    interestData();
+  }, [id]);
+
   const title = {
     fontSize: "14px",
   };
@@ -108,15 +131,18 @@ export default function DaftarJual() {
                 <div className="p-3 card-sidebar-category">
                   <h6 className="fw-bold pt-2 px-2">Kategori</h6>
                   <div className="card-sidebar-catergory_body px-2 py-2">
-                    <Button className="d-flex gap-2 align-items-center w-100 p-0 mb-2">
-                      <FiBox /> Produk <FiChevronRight className="ms-auto" />
+                    <Button className={toogleCategory === 1 ? "active" : "" & "d-flex gap-2 align-items-center w-100 p-0 mb-2"}
+                      onClick={() => setToogleCategory(1)}>
+                      <FiBox /> Semua Produk <FiChevronRight className="ms-auto" />
                     </Button>
 
-                    <Button className="d-flex gap-2 align-items-center w-100 p-0 mb-2">
+                    <Button className={toogleCategory === 2 ? "active" : "" & "d-flex gap-2 align-items-center w-100 p-0 mb-2"}
+                      onClick={() => setToogleCategory(2)}>
                       <FiHeart /> Diminati <FiChevronRight className="ms-auto" />
                     </Button>
 
-                    <Button className="d-flex gap-2 align-items-center w-100 p-0">
+                    <Button className={toogleCategory === 3 ? "active" : "" & "d-flex gap-2 align-items-center w-100 p-0"}
+                      onClick={() => setToogleCategory(3)}>
                       <FiDollarSign />
                       Terjual
                       <FiChevronRight className="ms-auto" />
@@ -130,7 +156,7 @@ export default function DaftarJual() {
 
           {/* Product Card */}
           <Col md={8}>
-            <div>
+            <div className={toogleCategory === 1 ? "active-content" : "content"}>
               <div className="content-product">
                 <Link to="/buatproduk">
                   <div className="px-2">
@@ -170,8 +196,35 @@ export default function DaftarJual() {
                 ).reverse()}
               </div>
             </div>
+            <div className={toogleCategory === 2 ? "active-content" : "content"}>
+              <div className="content-product">
+                {interest.map((interest) =>
+                  <Link to={`/previewproduk/${interest.id}`} style={{ textDecoration: "none", color: "black" }}>
+                    <div className="px-2 w-100">
+                      <Card>
+                        <Card.Img variant="top" src={interest.picture} style={image} />
+                        <Card.Body className="p-2">
+                          <Card.Title className="mb-0" style={title}>
+                            {interest.name}
+                          </Card.Title>
+                          <p className="mb-0" style={accesoris}>
+                            {interest.category}
+                          </p>
+                          <Card.Text className="mb-1">Rp.{interest.price}</Card.Text>
+                        </Card.Body>
+                        {/* <Badge bg={interest.isPublished === true ? "primary" : "warning"}>
+                          {interest.isPublished === true ? "Produk sudah di publish" : "Produk belum di publish"}
+                        </Badge> */}
+                      </Card>
+                    </div>
+                  </Link>
+                ).reverse()}
+              </div>
+            </div>
+
+
+
           </Col>
-          {/* End Product Card */}
         </Row>
       </Container>
     </>

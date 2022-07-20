@@ -271,3 +271,11 @@
     margin-left: 100px;
     border-radius: 12px;
 }
+
+.content {
+    display: none;
+}
+
+.active-content {
+    display: block;
+}
