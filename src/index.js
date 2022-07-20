@@ -6,9 +6,11 @@ import { store } from "./app/store";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import ProductPageBuyer from "./pages/ProductPageBuyer";
 import ProductPage from "./pages/ProductPage";
 import UpdateProduct from "./pages/UpdateProduct";
 import CreateProduct from "./pages/CreateProduct";
+import SellerPage from "./pages/DaftarJual";
 import Profile from "./pages/Profile";
 import InfoBidder from "./pages/InfoBidder";
 import Seller from "./pages/Seller";
@@ -23,6 +25,8 @@ render(
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/produkbuyer" element={<ProductPageBuyer />} />
+        <Route path="/dashboardseller/:id" element={<SellerPage />} />
         <Route path="/previewproduk/:id" element={<ProductPage />} />
         <Route path="/updateproduk/:id" element={<UpdateProduct />} />
         <Route path="/buatproduk" element={<CreateProduct />} />

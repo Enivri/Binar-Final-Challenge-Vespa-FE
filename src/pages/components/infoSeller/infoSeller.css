@@ -6,12 +6,30 @@
     float: none;
     margin-bottom: 10px;
 }
+.closeBut{
+    position: relative;
+    right: 12em;
+}
+.word{
+    width: 15em;
+}
 .card-seller2{
     width: 45em;
     height: 11em;
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
+}
+.card-bodyDua{
+    left: 6em;
+    position: relative;
+}
+.PICT2{
+    margin-top: 1em;
+    margin-left: 4em;
+    height: 100px;
+    width: 100px;
+
 }
 
 .center{
@@ -23,6 +41,7 @@
     margin-left: 18em;
     margin-bottom: 1em;
     margin-top: 2em;
+    width: 50em;
 }
 
 .button-info{
@@ -36,6 +55,7 @@
     margin-top: 1em;
     width: 20em;
 }
+
 .button{
     width: 160px;
 }
@@ -52,6 +72,88 @@
     width: 2em;
     margin-left: 29em;
     border: none;
+}
+
+@media screen and (max-width: 1023px){
+    .nonAct{
+        display: none;
+    }
+    .brand{
+        display: none;
+    }
+    .tittleNav{
+        max-width: 20em;
+    }
+    .home-seller{
+        max-width: 80%;
+    }
+    .arrow2{
+        display: none;
+    }
+    .card-seller{
+        position: relative;
+        left: 100%;
+        transform: scale(1.8);
+        margin-top: 12em;
+        height: 20em;
+    }
+    .PICT{
+        max-width: 100px;
+        position: fixed;
+        left: 15%;
+        top: 30%;
+        transform: scale(2);
+    }
+    .PICT2{
+        max-width: 150px;
+        position: fixed;
+        top: 10%;
+        right: 68%;
+        transform: scale(1.9);
+    }
+    .marginLeft{
+        max-width: 100%;
+        margin-top: 12em;
+        transform: scale(2.2);
+    }
+    .card-seller2{
+        position: relative;
+        left: 100%;
+        margin-top: 15em;
+        transform: scale(1.8);
+        height: 300px;
+
+    }
+    .card-body{
+        position: fixed;
+        width: 20em;
+        left: 35%;
+        bottom: 30%;
+        transform: scale(1.2);
+    }
+    .card-bodyDua{
+        position: fixed;
+        left: 55%;
+        top: 15%;
+        transform: scale(1.9);
+    }
+    .one{
+        position: fixed;
+        left: 75%;
+        top: 80%;
+    }
+    .two{
+        position: fixed;
+        left: 50%;
+        top: 80%;
+    }
+    .modal-seller{
+        transform: scale(.5);
+    }
+   
+
+    
+    
 }
 
 
