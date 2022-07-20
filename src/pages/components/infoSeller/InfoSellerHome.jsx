@@ -17,6 +17,36 @@ export function InfoSellerHome() {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
+    const Button1 = {
+        backgroundColor: '#7126B5',
+        borderRadius: '10px',
+        fontSize: '14px',
+        borderRadius: '16px',
+        width: '158px'
+    };
+
+    const Button2 = {
+        backgroundColor: '#7126B5',
+        borderRadius: '16px',
+        fontSize: '14px',
+        width: '250px',
+    };
+
+    const modalStyle = {
+        backgroundColor: '#EEEEEE',
+        fontSize: '14px',
+        border: '0px',
+        borderRadius: '16px',
+    };
+    const colourButton = {
+        borderColor: '#7126B5',
+        color: '#7126B5',
+        borderRadius: '16px',
+        fontSize: "14px",
+        width: "158px",
+        marginRight: "16px",
+    };
+
     return (
         <Container>
 
@@ -108,9 +138,12 @@ export function InfoSellerHome() {
                 </div>
             </Card>
 
-            <Modal show={show} onHide={handleClose} className="modal-seller">
+            <Modal show={show} onHide={handleClose} className="modal-seller" animation={true} size="sm" centered>
                 <button className="transparent" onClick={(handleClose)}>
+                    <div className="closeBut">
                     <GrClose />
+                    </div>
+
                 </button>
                 <Modal.Header className="center">
                     <h5>
@@ -128,7 +161,9 @@ export function InfoSellerHome() {
                                     id={`-${type}-1`}
                                 />
                                 <div className="formList">
+                                    <div className="word">
                                     <p> Kamu telah sepakat menjual produk ini dengan pembeli</p>
+                                    </div>
                                 </div>
                                 <Form.Check
                                     label="Batalkan Transaksi"
@@ -137,7 +172,9 @@ export function InfoSellerHome() {
                                     id={`-${type}-2`}
                                 />
                                 <div className="formList">
+                                    <div className="word">
                                     <p> Kamu membatalkan transaksi produk dengan pembeli</p>
+                                    </div>
                                 </div>
                             </div>
                         ))}
