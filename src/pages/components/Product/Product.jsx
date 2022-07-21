@@ -117,7 +117,7 @@ export function Product() {
                                             <Card.Text>Rp {post.price.toLocaleString()}</Card.Text>
                                         </Card.Body>
                                     </Card>
-                                </Col>,
+                                </Col>
                             </Link>
                         ).reverse()}
                     </Row>
