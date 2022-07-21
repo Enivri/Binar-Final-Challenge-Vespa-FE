@@ -13,6 +13,7 @@ import CreateProduct from "./pages/CreateProduct";
 import SellerPage from "./pages/DaftarJual";
 import Profile from "./pages/Profile";
 import Seller from "./pages/Seller";
+import InfoBidder from "./pages/infoBidder";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -31,6 +32,7 @@ render(
         <Route path="/buatproduk" element={<CreateProduct />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/infoSeller" element={<Seller />} />
+        <Route path="/infopenawar/:id" element={<InfoBidder />} />
       </Routes>
     </Router>
   </Provider>,
