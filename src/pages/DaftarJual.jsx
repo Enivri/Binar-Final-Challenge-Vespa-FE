@@ -113,7 +113,7 @@ export default function DaftarJual() {
       {/* End Navbar */}
 
       <Container className="mt-4 page-daftar-jual" style={{ width: "70%" }}>
-        <h5 className="fw-bold mb-3">Daftar Jual Saya</h5>
+        <h5 className="fw-bold mb-3 mx-1">Daftar Jual Saya</h5>
 
         {/* User Card */}
         <Row>
@@ -138,7 +138,7 @@ export default function DaftarJual() {
                       <FiBox /> Semua Produk <FiChevronRight className="ms-auto" />
                     </Button>
 
-                    <Button className={toogleCategory === 2 ? "active" : "" & "d-flex gap-2 align-items-center w-100 p-0 mb-2"}
+                    <Button className={toogleCategory === 2 ? "active" : "" & "d-flex gap-2 align-items-center w-100 p-0 mb-2 "}
                       onClick={() => setToogleCategory(2)}>
                       <FiHeart /> Diminati <FiChevronRight className="ms-auto" />
                     </Button>
