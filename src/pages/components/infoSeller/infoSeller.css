@@ -75,6 +75,12 @@
 }
 
 @media screen and (max-width: 1023px){
+    .nav-seller{
+        width: 392vw;
+    }
+    .navbar-brand{
+        display: none;
+    }
     .nonAct{
         display: none;
     }
@@ -82,13 +88,16 @@
         display: none;
     }
     .tittleNav{
-        max-width: 20em;
+        transform: scale(2.5);
+        margin-left: 35%;
     }
     .home-seller{
         max-width: 80%;
     }
     .arrow2{
-        display: none;
+        position: relative;
+        left: 20%;
+        bottom: 250%;
     }
     .card-seller{
         position: relative;
