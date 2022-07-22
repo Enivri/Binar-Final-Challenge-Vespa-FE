@@ -157,7 +157,7 @@
         top: 80%;
     }
     .modal-seller{
-        transform: scale(.5);
+        max-width: 1000px;
     }
    
 
