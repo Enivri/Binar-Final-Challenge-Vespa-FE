@@ -17,6 +17,7 @@ export default function DaftarJual() {
   const [interest, setInterest] = useState([]);
   const [toogleCategory, setToogleCategory] = useState(1)
 
+
   useEffect(() => {
     const validateLogin = async () => {
       try {
@@ -201,23 +202,24 @@ export default function DaftarJual() {
               <div className={toogleCategory === 2 ? "active-content" : "content"}>
                 <div className="content-product">
                   {interest.map((interest) =>
-                    <Link to={`/infopenawar/${interest.id}`} style={{ textDecoration: "none", color: "black" }} key={interest.id}>
-                      <div className="px-2 w-100">
-                        <Card>
-                          <Card.Img variant="top" src={interest.product.picture} style={image} />
-                          <Card.Body className="p-2">
-                            <Card.Title className="mb-0" style={title}>
-                              {interest.product.name}
-                            </Card.Title>
-                            <p className="mb-0" style={accesoris}>
-                              {interest.product.category}
-                            </p>
-                            <Card.Text className="mb-1">Rp.{interest.product.price}</Card.Text>
-                          </Card.Body>
-                        </Card>
-                      </div>
-                    </Link>
-                  ).reverse()}
+                    interest.product.sold === false && interest.accepted != "reject" ? (
+                      <Link to={`/infopenawar/${interest.id}`} style={{ textDecoration: "none", color: "black" }} key={interest.id}>
+                        <div className="px-2 w-100">
+                          <Card>
+                            <Card.Img variant="top" src={interest.product.picture} style={image} />
+                            <Card.Body className="p-2">
+                              <Card.Title className="mb-0" style={title}>
+                                {interest.product.name}
+                              </Card.Title>
+                              <p className="mb-0" style={accesoris}>
+                                {interest.product.category}
+                              </p>
+                              <Card.Text className="mb-1">Rp.{interest.product.price}</Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </div>
+                      </Link>
+                    ) : ("")).reverse()}
                 </div>
               </div>
             ) : (
@@ -225,24 +227,25 @@ export default function DaftarJual() {
             )}
             <div className={toogleCategory === 3 ? "active-content" : "content"}>
               <div className="content-product">
-                {post.map((post) =>
-                  <Link to={`/infopenawar/${post.id}`} style={{ textDecoration: "none", color: "black" }}>
-                    <div className="px-2 w-100">
-                      <Card>
-                        <Card.Img variant="top" src={post.picture} style={image} />
-                        <Card.Body className="p-2">
-                          <Card.Title className="mb-0" style={title}>
-                            {post.name}
-                          </Card.Title>
-                          <p className="mb-0" style={accesoris}>
-                            {post.category}
-                          </p>
-                          <Card.Text className="mb-1">Rp.{post.price}</Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </Link>
-                ).reverse()}
+                {interest.map((interest) =>
+                interest.product.sold === true ? (
+                <Link to={`/infopenawar/${interest.id}`} style={{ textDecoration: "none", color: "black" }}>
+                  <div className="px-2 w-100">
+                    <Card>
+                      <Card.Img variant="top" src={interest.product.picture} style={image} />
+                      <Card.Body className="p-2">
+                        <Card.Title className="mb-0" style={title}>
+                          {interest.product.name}
+                        </Card.Title>
+                        <p className="mb-0" style={accesoris}>
+                          {interest.product.category}
+                        </p>
+                        <Card.Text className="mb-1">Rp.{interest.product.price}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                </Link>
+                  ) : ("")).reverse()}
               </div>
             </div>
 

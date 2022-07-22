@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import { HomeNavbar } from "./components/Navbar/Navbar"
-import { Col, Row, Container, Button, Card, Stack, Modal, Form } from "react-bootstrap";
+import { Col, Row, Container, Button, Card, Modal, Form } from "react-bootstrap";
 import { useNavigate, Navigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "../css/product.css";

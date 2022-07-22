@@ -1,9 +1,9 @@
 import React from 'react';
-import { useRef, useState, useEffect } from "react";
+import {  useState, useEffect } from "react";
 import { HomeNavbar } from "./components/Navbar/Navbar"
 import { useSelector } from "react-redux";
 import { Col, Row, Container, Button, Card, Form } from "react-bootstrap";
-import { useNavigate, Navigate, Link } from "react-router-dom";
+import { useNavigate, Navigate, } from "react-router-dom";
 import { selectUser } from "../slices/userSlice";
 import axios from "axios";
 import "../css/product.css";

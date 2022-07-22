@@ -192,13 +192,6 @@ export function Modal1() {
 
     return (
         <>
-            <Button
-                style={Button1}
-                onClick={(e) => { onAccept(e, "waiting"); handleShow() }}
-                hidden={interest.accepted === "reject" || (interest.product && interest.product.sold) === true ? true : false}
-            >
-                {interest.accepted === "waiting" ? "Hubungi di " : "Terima"}
-            </Button>
             <div style={modalStyle}>
                 <Modal show={show} onHide={handleClose} animation={true} size="sm" centered >
 

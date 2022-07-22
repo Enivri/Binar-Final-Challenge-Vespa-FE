@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { Container, Button, Row, Col, Card } from "react-bootstrap";
-import OwlCarousel from "react-owl-carousel";
-import axios from "axios";
 import { useSelector } from "react-redux";
+import axios from "axios";
 import '../Product/Product.css';
 
 export function Product() {

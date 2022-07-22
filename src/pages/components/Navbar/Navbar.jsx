@@ -1,15 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser } from "../../../slices/userSlice";
 import { addSearch } from "../../../slices/searchingSlice";
+import { Navbar, Container, Button, Dropdown, Offcanvas } from "react-bootstrap";
+import { FiLogIn, FiList, FiBell, FiUser, FiLogOut } from "react-icons/fi";
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from "axios";
-import { Navbar, Nav, Container, Form, ButtonNavbar, Button, Dropdown, DropdownButton, Offcanvas } from "react-bootstrap";
-import { FiLogIn, FiList, FiBell, FiUser, FiLogOut } from "react-icons/fi";
 import "../Navbar/navbar.css";
 
 const Search = styled('div')(({ theme }) => ({

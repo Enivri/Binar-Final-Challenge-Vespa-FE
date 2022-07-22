@@ -1,19 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Nav, Navbar, Card, Container, Form, Row, Col, ListGroup, Button, Modal } from "react-bootstrap";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { FiCamera, FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import React from "react";
 import dateFormat from "dateformat";
 import { Modal1 } from "./components/Modals/Modal";
 import "../css/style.css";
-// import picExample1 from "../images/picExample1.png";
-
 
 export default function InfoBidder() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [user, setUser] = useState([]);
     const [interest, setInterest] = useState([]);
 
     // modal
@@ -44,14 +41,35 @@ export default function InfoBidder() {
     };
 
     const selectedButtonSold = (e) => {
-        setSelectedAccept("accept")
-        setSelectedSold(e.target.value);
+        setSelectedAccept(e.target.value)
+        setSelectedSold(true);
     }
 
     const selectedButtonReject = (e) => {
         setSelectedAccept(e.target.value)
     }
 
+    const Button2 = {
+        backgroundColor: '#7126B5',
+        borderRadius: '16px',
+        fontSize: '14px',
+        width: '250px',
+    };
+
+    const modalStyle = {
+        backgroundColor: '#EEEEEE',
+        fontSize: '14px',
+        border: '0px',
+        borderRadius: '16px',
+    };
+
+    const Button1 = {
+        backgroundColor: '#7126B5',
+        borderRadius: '10px',
+        fontSize: '14px',
+        borderRadius: '16px',
+        width: '158px'
+    };
 
     const colourButton = {
         borderColor: '#7126B5',
@@ -111,7 +129,7 @@ export default function InfoBidder() {
 
             setInterest(data);
 
-            if (acceptResponse.status) navigate(`/infopenawar/${interest.id}`);
+            if (acceptResponse.status) navigate(`/dashboardseller/${interest.owner_id}`);
         } catch (err) {
             console.log(err);
             const response = err.response.data;
@@ -160,7 +178,7 @@ export default function InfoBidder() {
 
             setInterest(data);
 
-            if (acceptResponse.status) navigate(`/infoPenawaran/${interest.id}`);
+            if (acceptResponse.status) navigate(`/infopenawar/${interest.id}`);
         } catch (err) {
             console.log(err);
             const response = err.response.data;
@@ -212,7 +230,7 @@ export default function InfoBidder() {
             </div>
             <Container className="my-5 w-50">
                 <div>
-                    <Link className="arrow2" to="/" style={{ color: "black" }}>
+                    <Link to={`/dashboardseller/${interest.owner_id}`} className="arrow2" style={{ color: "black" }}>
                         <FiArrowLeft />
                     </Link>
                 </div>
@@ -261,7 +279,14 @@ export default function InfoBidder() {
                                         >
                                             {interest.accepted === "waiting" ? "Status" : "Tolak"}
                                         </Button>
-                                        <Modal1 />
+                                        <Button
+                                            style={Button1}
+                                            onClick={(e) => { onAccept(e, "waiting"); handleShow() }}
+                                            hidden={interest.accepted === "reject" || (interest.product && interest.product.sold) === true ? true : false}
+                                        >
+                                            {interest.accepted === "waiting" ? "Hubungi di " : "Terima"}
+                                        </Button>
+                                        
                                     </div>
                                 </Col>
                             </Row>
@@ -287,9 +312,9 @@ export default function InfoBidder() {
                                     type="radio"
                                     id={`radio-1`}
                                     label={`Berhasil terjual`}
-                                    value={true}
+                                    value={"accept"}
                                     onChange={selectedButtonSold}
-                                    checked={selectedButtonSold === true}
+                                    checked={selectedButtonSold === "accept"}
                                 />
                                 <p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
 
@@ -298,9 +323,9 @@ export default function InfoBidder() {
                                     type="radio"
                                     label={`Batalkan transaksi`}
                                     id={`radio-2`}
-                                    value={"accept"}
+                                    value={"reject"}
                                     onChange={selectedButtonReject}
-                                    checked={selectedButtonReject === "accept"}
+                                    checked={selectedButtonReject === "reject"}
 
                                 />
                                 <p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
@@ -317,6 +342,58 @@ export default function InfoBidder() {
                     </Modal.Footer>
                 </div>
             </Modal>
+
+            <div style={modalStyle}>
+                <Modal show={show} onHide={handleClose} animation={true} size="sm" centered >
+
+                    <Modal.Header closeButton ></Modal.Header>
+                    <Modal.Body >
+                        <div >
+                            <div>
+                                <p className="titlefont2">Yeay kamu berhasil mendapat harga yang sesuai</p>
+                                <p className="greyfont" style={{ fontSize: "14px" }}>Segera hubungi pembeli melalui whatsapp untuk transaksi selanjutnya</p>
+                            </div>
+                            <Card style={modalStyle}>
+
+                                <p className='titlefont1 text-center m-2'>Product Match</p>
+                                <div className='container'>
+                                    <div>
+                                        <Row className='mb-3'>
+                                            <Col xs={3}>
+                                                <img src={`${interest.user ? interest.user.picture : ""}`} style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+                                            </Col>
+                                            <Col>
+                                                <p className="titlefont1">{interest.user && interest.user.name}</p>
+                                                <p className="greyfont">{interest.user && interest.user.town}</p>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                    <div>
+                                        <Row>
+                                            <Col xs={3}>
+                                                <img src={`${interest.product ? interest.product.picture : ""}`} style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+                                            </Col>
+                                            <Col>
+                                                <div className="titlefont2">
+                                                    <p>{interest.product && interest.product.name}</p>
+                                                    <p style={{ textDecorationLine: 'line-through' }}>Rp {interest.product && interest.product.price}</p>
+                                                    <p>Ditawar Rp {interest.requestedPrice}</p>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                </div>
+                            </Card>
+                            <div className='buttonWA'>
+                                <Button style={Button2} onClick={handleClose}>
+                                    Hubungi via Whatsapp
+                                </Button>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
+            </div>
+
         </div>
     )
 }
