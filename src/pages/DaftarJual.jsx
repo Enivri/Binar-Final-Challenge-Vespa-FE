@@ -12,7 +12,7 @@ export default function DaftarJual() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [post, setPost] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState({});
   const [interest, setInterest] = useState([]);
   const [toogleCategory, setToogleCategory] = useState(1)
