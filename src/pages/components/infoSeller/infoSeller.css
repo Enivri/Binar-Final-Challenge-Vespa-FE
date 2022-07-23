@@ -1,17 +1,35 @@
 /*info Seller*/
 .card-seller{
-    width: 50em;
+    width: 45em;
     height: 9em;
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
 }
+.closeBut{
+    position: relative;
+    right: 12em;
+}
+.word{
+    width: 15em;
+}
 .card-seller2{
-    width: 50em;
+    width: 45em;
     height: 11em;
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
+}
+.card-bodyDua{
+    left: 6em;
+    position: relative;
+}
+.PICT2{
+    margin-top: 1em;
+    margin-left: 4em;
+    height: 100px;
+    width: 100px;
+
 }
 
 .center{
@@ -20,9 +38,10 @@
     margin-bottom: 10px;
 }
 .marginLeft{
-    margin-left: 10em;
+    margin-left: 18em;
     margin-bottom: 1em;
     margin-top: 2em;
+    width: 50em;
 }
 
 .button-info{
@@ -31,5 +50,118 @@
 .formList{
     width: 25rem;
     margin-left: 2em;
+}
+.PICT{
+    margin-top: 1em;
+    width: 20em;
+}
+
+.button{
+    width: 160px;
+}
+.buttonModal{
+    width: 600px;
+}
+.closeButton{
+    margin-left: 29em;
+    margin-top: 1em;
+
+}
+.transparent{
+    background-color: transparent;
+    width: 2em;
+    margin-left: 29em;
+    border: none;
+}
+
+@media screen and (max-width: 1023px){
+    .nav-seller{
+        width: 392vw;
+    }
+    .navbar-brand{
+        display: none;
+    }
+    .nonAct{
+        display: none;
+    }
+    .brand{
+        display: none;
+    }
+    .tittleNav{
+        transform: scale(2.5);
+        margin-left: 35%;
+    }
+    .home-seller{
+        max-width: 80%;
+    }
+    .arrow2{
+        position: relative;
+        left: 20%;
+        bottom: 250%;
+    }
+    .card-seller{
+        position: relative;
+        left: 100%;
+        transform: scale(1.8);
+        margin-top: 12em;
+        height: 20em;
+    }
+    .PICT{
+        max-width: 100px;
+        position: fixed;
+        left: 15%;
+        top: 30%;
+        transform: scale(2);
+    }
+    .PICT2{
+        max-width: 150px;
+        position: fixed;
+        top: 10%;
+        right: 68%;
+        transform: scale(1.9);
+    }
+    .marginLeft{
+        max-width: 100%;
+        margin-top: 12em;
+        transform: scale(2.2);
+    }
+    .card-seller2{
+        position: relative;
+        left: 100%;
+        margin-top: 15em;
+        transform: scale(1.8);
+        height: 300px;
+
+    }
+    .card-body{
+        position: fixed;
+        width: 20em;
+        left: 35%;
+        bottom: 30%;
+        transform: scale(1.2);
+    }
+    .card-bodyDua{
+        position: fixed;
+        left: 55%;
+        top: 15%;
+        transform: scale(1.9);
+    }
+    .one{
+        position: fixed;
+        left: 75%;
+        top: 80%;
+    }
+    .two{
+        position: fixed;
+        left: 50%;
+        top: 80%;
+    }
+    .modal-seller{
+        max-width: 1000px;
+    }
+   
+
+    
+    
 }
 
