@@ -269,6 +269,29 @@
   margin-left: 290px;
   font-weight: bold;
 }
+@media screen and (max-width: 1023px){
+  .nav-profile{
+    width: 50em;
+  }
+
+ .info1{
+   width: 10em;
+   transform: scale(2);
+ }
+ .box-profile{
+   transform: scale(1.25);
+   position: fixed;
+   margin-left: 10em;
+ }
+ .form-responsive{
+   transform: scale(1.15);
+   width: 20em;
+   position: fixed;
+   margin-left: 7em;
+   margin-top:10em;
+ }
+}
+
 
 /* Container Arrow*/
 .arrow2 {

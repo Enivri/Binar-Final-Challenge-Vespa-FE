@@ -126,7 +126,7 @@ function About() {
     return isLoggedIn ? (
         <div>
             {/* navbar */}
-            <div className="na1 py-4 shadow">
+            <div className="na1 py-4 shadow nav-profile">
                 <nav className="navbar navbar-expand-lg navbar-light bg-all">
                     <Link to="/">
                         <button className="na2 navbar-brand box"></button>
@@ -150,6 +150,7 @@ function About() {
                     <Nav className="info2 text-dark">Lengkapi Info Akun</Nav>
                 </div>
                 <Form onSubmit={onUpdate}>
+                    <div className="box-profile">
                     <button className="mb-3 box1" >
                         <Form.Label
                             className="upload-button-product2"
@@ -170,6 +171,8 @@ function About() {
                                 setpictureField(e.target.files[0])
                             }} hidden />
                     </button>
+                    </div>
+                    <div className="form-responsive">
                     <Form className="border1 mb-3">
                         <Form.Label>Nama*</Form.Label>
                         <Form.Control style={formBorder} type="text" ref={nameField} defaultValue={data.name} />
@@ -206,6 +209,7 @@ function About() {
                             placeholder="contoh: +628123456789"
                         />
                     </Form.Group>
+                    
                     {errorResponse.isError && (
                         <Alert variant="danger">{errorResponse.message}</Alert>
                     )}
@@ -213,6 +217,7 @@ function About() {
                     <Button style={colourButton} className="myButton6 w-100" type="submit">
                         Simpan
                     </Button>
+                    </div>
                 </Form>
             </Container>
         </div>
