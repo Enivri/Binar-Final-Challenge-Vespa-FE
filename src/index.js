@@ -13,7 +13,7 @@ import CreateProduct from "./pages/CreateProduct";
 import SellerPage from "./pages/DaftarJual";
 import Profile from "./pages/Profile";
 import Seller from "./pages/Seller";
-import InfoBidder from "./pages/InfoBidder";
+import InfoBidder from "./pages/infoBidder";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
