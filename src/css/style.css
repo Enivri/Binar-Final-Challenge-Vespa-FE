@@ -46,7 +46,8 @@
   margin-left: 20%;
   margin-right: 20%;
 }
-.arrowregister{
+
+.arrowregister {
   display: none;
 }
 
@@ -269,28 +270,7 @@
   margin-left: 290px;
   font-weight: bold;
 }
-@media screen and (max-width: 1023px){
-  .nav-profile{
-    width: 50em;
-  }
 
- .info1{
-   width: 10em;
-   transform: scale(2);
- }
- .box-profile{
-   transform: scale(1.25);
-   position: fixed;
-   margin-left: 10em;
- }
- .form-responsive{
-   transform: scale(1.15);
-   width: 20em;
-   position: fixed;
-   margin-left: 7em;
-   margin-top:10em;
- }
-}
 
 
 /* Container Arrow*/
@@ -298,6 +278,20 @@
   color: black;
   font-size: 25px;
   margin-left: -100px;
+}
+
+.arrowcreate {
+  color: black;
+  font-size: 25px;
+  margin-bottom: 100px;
+  margin-left: 21%;
+}
+
+.formcreate {
+  margin-top: 3%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 4%;
 }
 
 .container div .info2 {
@@ -519,6 +513,31 @@
   border-radius: 12px;
 }
 
+@media screen and (max-width: 1023px) {
+  .nav-profile {
+    width: 50em;
+  }
+
+  .info1 {
+    width: 10em;
+    transform: scale(2);
+  }
+
+  .box-profile {
+    transform: scale(1.25);
+    position: fixed;
+    margin-left: 10em;
+  }
+
+  .form-responsive {
+    transform: scale(1.15);
+    width: 20em;
+    position: fixed;
+    margin-left: 7em;
+    margin-top: 10em;
+  }
+}
+
 
 @media screen and (max-width: 360px) {
 
@@ -571,6 +590,7 @@
     margin-right: 15px;
     line-height: 2;
   }
+
   .arrowregister {
     display: block;
     margin-left: 10px;
@@ -590,6 +610,46 @@
     font-weight: 700;
   }
 
+  /* Create Product */
+  .navbarcreate {
+    display: none;
+  }
+
+  .container div .info3 {
+    display: block;
+    font-weight: bold;
+    margin-top: -70px;
+    margin-bottom: 40px;
+    margin-left: 3%;
+    margin-right: 8%;
+    text-align: center;
+    font-size: 14px;
+
+  }
+
+
+  .formcreate {
+    margin-top: 15%;
+    margin-left: 3%;
+    margin-right: 8%;
+    line-height: 0.8;
+    font-weight: bold;
+
+  }
+
+  .arrowcreate {
+    margin-top: 100px;
+    margin-left: 33px;
+  }
+
+  /* Update Product */
+
+  .formupdate {
+    margin-top: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
+    line-height: 0.8;
+  }
 
 
 }

@@ -99,7 +99,7 @@ export default function CreateProduct() {
             if (postResponse.status) {
                 setData(postResponse.data.created_product);
                 const endpointid = postResponse.data.created_product.user_id;
-                
+
                 if (isPublished) navigate("/");
                 else navigate(`/dashboardseller/${endpointid}`)
             }
@@ -118,7 +118,7 @@ export default function CreateProduct() {
     return isLoggedIn ? (
         <div>
             {/* navbar */}
-            <div className="na1 py-4 shadow">
+            <div className="na1 py-4 shadow navbarcreate">
                 <nav className="navbar navbar-expand-lg navbar-light bg-all">
                     <Link to="/">
                         <button className="na2 navbar-brand box"></button>
@@ -131,90 +131,91 @@ export default function CreateProduct() {
                     </div>
                 </nav>
             </div>
+            <div>
+                <Link className="arrowcreate" to="/" style={{ color: "black" }}>
+                    <FiArrowLeft />
+                </Link>
+            </div>
+            <div className="formcreate">
+                <Container>
+                    <div>
+                        <Nav className="info3 text-dark">Buat Detail Produk</Nav>
+                    </div>
+                    <Form >
+                        <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
+                            <Form.Label>Nama Produk</Form.Label>
+                            <Form.Control style={borderRadius} type="text" ref={nameField} placeholder="Nama" />
+                        </Form>
+                        <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
+                            <Form.Label>Harga Produk</Form.Label>
+                            <Form.Control style={borderRadius} type="text" ref={priceField} placeholder="Rp 0,00" />
+                        </Form>
+                        <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
+                            <Form.Label>Kategori</Form.Label>
+                            <Form.Select style={borderRadius} ref={categoryField} aria-label="Default select example">
+                                <option>Pilih Kategori</option>
+                                <option value="Hobi">Hobi</option>
+                                <option value="Kendaraan">Kendaraan</option>
+                                <option value="Baju">Baju</option>
+                                <option value="Elektronik">Elektronik</option>
+                                <option value="Kesehatan">Kesehatan</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
+                            <Form.Label>Deskripsi</Form.Label>
+                            <Form.Control
+                                style={borderRadius}
+                                type="text"
+                                ref={descriptionField}
+                                placeholder="Contoh: Jalan Ikan Hiu 33"
+                                as="textarea"
+                                rows={3}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
+                            Foto Produk
+                        </Form.Group>
+                        <Form.Label
+                            className="upload-button-product"
+                            for="exampleFormControlFile1"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                fileInputRef.current.click();
+                            }}
+                        >
+                        </Form.Label>
 
-            <Container className="my-5 w-50">
-                <div>
-                    <Link className="arrow2" to="/" style={{ color: "black" }}>
-                        <FiArrowLeft />
-                    </Link>
-                </div>
-                <div>
-                    <Nav className="info3 text-dark">Lengkapi Detail Produk</Nav>
-                </div>
-                <Form >
-                    <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Nama Produk</Form.Label>
-                        <Form.Control style={borderRadius} type="text" ref={nameField} placeholder="Nama" />
-                    </Form>
-                    <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Harga Produk</Form.Label>
-                        <Form.Control style={borderRadius} type="text" ref={priceField} placeholder="Rp 0,00" />
-                    </Form>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Kategori</Form.Label>
-                        <Form.Select style={borderRadius} ref={categoryField} aria-label="Default select example">
-                            <option>Pilih Kategori</option>
-                            <option value="Hobi">Hobi</option>
-                            <option value="Kendaraan">Kendaraan</option>
-                            <option value="Baju">Baju</option>
-                            <option value="Elektronik">Elektronik</option>
-                            <option value="Kesehatan">Kesehatan</option>
-                        </Form.Select>
-                    </Form.Group>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Deskripsi</Form.Label>
                         <Form.Control
-                            style={borderRadius}
-                            type="text"
-                            ref={descriptionField}
-                            placeholder="Contoh: Jalan Ikan Hiu 33"
-                            as="textarea"
-                            rows={3}
+                            type="file"
+                            multiple
+                            class="form-control-file"
+                            id="exampleFormControlFile1"
+                            ref={fileInputRef}
+                            onChange={(e) => {
+                                setpictureField(e.target.files[0])
+                            }}
+                            hidden
                         />
-                    </Form.Group>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        Foto Produk
-                    </Form.Group>
-                    <Form.Label
-                        className="upload-button-product"
-                        for="exampleFormControlFile1"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            fileInputRef.current.click();
-                        }}
-                    >
-                    </Form.Label>
+                        <Row>
+                            <Col>
+                                <Button style={colourButton} onClick={(e) => onPost(e, false)} className="myButton7 w-100" type="submit">
+                                    Preview
+                                </Button>
+                            </Col>
+                            <Col>
 
-                    <Form.Control
-                        type="file"
-                        multiple
-                        class="form-control-file"
-                        id="exampleFormControlFile1"
-                        ref={fileInputRef}
-                        onChange={(e) => {
-                            setpictureField(e.target.files[0])
-                        }}
-                        hidden
-                    />
-                    <Row>
-                        <Col>
-                            <Button style={colourButton} onClick={(e) => onPost(e, false)} className="myButton7 w-100" type="submit">
-                                Preview
-                            </Button>
-                        </Col>
-                        <Col>
+                                <Button style={colourButton} onClick={(e) => onPost(e, true)} className="myButton6 w-100" type="submit">
+                                    Terbitkan
+                                </Button>
 
-                            <Button style={colourButton} onClick={(e) => onPost(e, true)} className="myButton6 w-100" type="submit">
-                                Terbitkan
-                            </Button>
-
-                        </Col>
-                    </Row>
-                    {errorResponse.isError && (
-                        <Alert variant="danger">{errorResponse.message}</Alert>
-                    )}
-                </Form>
-            </Container>
+                            </Col>
+                        </Row>
+                        {errorResponse.isError && (
+                            <Alert variant="danger">{errorResponse.message}</Alert>
+                        )}
+                    </Form>
+                </Container>
+            </div>
         </div >
     ) : (
         <Navigate to="/login" replace />);
