@@ -159,6 +159,12 @@
     .modal-seller{
         max-width: 1000px;
     }
+    .card{
+        height: 20em;
+    }
+    .cardimg{
+        height: 5em;
+    }
    
 
     

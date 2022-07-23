@@ -18,7 +18,6 @@
     gap: 8px;
 
     width: 181.33px;
-    height: 198px;
 
     /* Neutral/01 */
 
@@ -34,7 +33,6 @@
 
 
     width: 165.33px;
-    height: 100px;
 
     background: #FFFFFF;
     border-radius: 4px;
@@ -54,7 +52,6 @@
     align-items: flex-start;
     padding: 0px;
     gap: 8px;
-
     width: 165.33px;
     height: 66px;
 
@@ -102,15 +99,35 @@
     width: 0; 
   }
 
+.product-card{
+    display: none;
+}
+
   @media screen and (max-width: 1023px){
+    .buttonCategory {
+        margin-top: 10em;
+    }
     .buttonCategory {
         margin-top: 0;
       }
+
+      .card-product{
+          display: none;
+      }
     
-      .product-card { 
+      .product-card {
         display: grid;
         grid-template-columns: auto auto;
         grid-gap: 10px;
       }
+      .card{
+          max-height: 210px;
+      }
+      .card-Content{
+          position: relative;
+          left: 1vw;
+          top: 1em;
+      }
+
 
 }

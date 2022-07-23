@@ -103,7 +103,7 @@ export function Product() {
                     </div>
                 </div>
 
-                <Container className="mt-5 product-card">
+                <Container className="mt-5 card-product">
                     <Row md={6} className="mb-3 rowCard">
                         {post.map((post) =>
                             <Link to={`/previewproduk/${post.id}`} style={{ textDecoration: "none", color: "black" }}>
@@ -120,6 +120,23 @@ export function Product() {
                             </Link>
                         ).reverse()}
                     </Row>
+                </Container>
+
+                <Container className="mt-5 product-card">
+                        {post.map((post) =>
+                            <Link to={`/previewproduk/${post.id}`} style={{ textDecoration: "none", color: "black" }}>
+                                <div key={post.id}>
+                                    <Card>
+                                        <Card.Img variant="top" className="p-2 cardimg" src={post.picture} />
+                                        <div className="card-Content">
+                                            <Card.Title className="cut-text">{post.name}</Card.Title>
+                                            <p className="text-black-50 categorycard">{post.category}</p>
+                                            <Card.Text>Rp {post.price.toLocaleString()}</Card.Text>
+                                        </div>
+                                    </Card>
+                                </div>
+                            </Link>
+                        ).reverse()}
                 </Container>
             </Container>
         </>
