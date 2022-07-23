@@ -17,7 +17,6 @@ export default function DaftarJual() {
   const [interest, setInterest] = useState([]);
   const [toogleCategory, setToogleCategory] = useState(1)
 
-
   useEffect(() => {
     const validateLogin = async () => {
       try {
@@ -62,6 +61,7 @@ export default function DaftarJual() {
         console.log(err);
       }
     }
+    validateLogin();
     getProduct();
   }, [id]);
 
@@ -104,7 +104,7 @@ export default function DaftarJual() {
 
 
 
-  return (
+  return isLoggedIn ? (
     <>
       {/* Navbar */}
       <div>
@@ -228,32 +228,30 @@ export default function DaftarJual() {
             <div className={toogleCategory === 3 ? "active-content" : "content"}>
               <div className="content-product">
                 {interest.map((interest) =>
-                interest.product.sold === true ? (
-                <Link to={`/infopenawar/${interest.id}`} style={{ textDecoration: "none", color: "black" }}>
-                  <div className="px-2 w-100">
-                    <Card>
-                      <Card.Img variant="top" src={interest.product.picture} style={image} />
-                      <Card.Body className="p-2">
-                        <Card.Title className="mb-0" style={title}>
-                          {interest.product.name}
-                        </Card.Title>
-                        <p className="mb-0" style={accesoris}>
-                          {interest.product.category}
-                        </p>
-                        <Card.Text className="mb-1">Rp.{interest.product.price}</Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </div>
-                </Link>
+                  interest.product.sold === true ? (
+                    <Link to={`/infopenawar/${interest.id}`} style={{ textDecoration: "none", color: "black" }}>
+                      <div className="px-2 w-100">
+                        <Card>
+                          <Card.Img variant="top" src={interest.product.picture} style={image} />
+                          <Card.Body className="p-2">
+                            <Card.Title className="mb-0" style={title}>
+                              {interest.product.name}
+                            </Card.Title>
+                            <p className="mb-0" style={accesoris}>
+                              {interest.product.category}
+                            </p>
+                            <Card.Text className="mb-1">Rp.{interest.product.price}</Card.Text>
+                          </Card.Body>
+                        </Card>
+                      </div>
+                    </Link>
                   ) : ("")).reverse()}
               </div>
             </div>
-
-
-
           </Col>
         </Row>
       </Container>
     </>
-  );
+  ) : (
+    <Navigate to="/login" replace />);;
 }

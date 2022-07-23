@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Nav, Navbar, Card, Container, Form, Row, Col, ListGroup, Button, Modal } from "react-bootstrap";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, Navigate, Link, useParams } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import React from "react";
@@ -10,6 +10,8 @@ import "../css/style.css";
 
 export default function InfoBidder() {
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [user, setUser] = useState({});
     const { id } = useParams();
     const [interest, setInterest] = useState([]);
 
@@ -141,6 +143,35 @@ export default function InfoBidder() {
         }
     };
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Check status user login
+                // 1. Get token from localStorage
+                const token = localStorage.getItem("token");
+
+                // 2. Check token validity from API
+                const currentUserRequest = await axios.get(
+                    "http://localhost:2000/v1/users",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                const currentUserResponse = currentUserRequest.data;
+
+                if (currentUserResponse.status) {
+                    setUser(currentUserResponse.data.user);
+                }
+            } catch (err) {
+                setIsLoggedIn(false);
+            }
+        };
+        fetchData();
+    }, [id])
+
 
     const onAccept = async (e, accepted) => {
         e.preventDefault();
@@ -211,7 +242,7 @@ export default function InfoBidder() {
         interestData();
     }, [id]);
 
-    return (
+    return isLoggedIn ? (
 
         <div>
             {/* navbar */}
@@ -286,7 +317,7 @@ export default function InfoBidder() {
                                         >
                                             {interest.accepted === "waiting" ? "Hubungi di " : "Terima"}
                                         </Button>
-                                        
+
                                     </div>
                                 </Col>
                             </Row>
@@ -393,7 +424,7 @@ export default function InfoBidder() {
                     </Modal.Body>
                 </Modal>
             </div>
-
         </div>
-    )
+    ) : (
+        <Navigate to="/login" replace />);
 }
