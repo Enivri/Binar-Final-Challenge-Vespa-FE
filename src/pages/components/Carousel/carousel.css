@@ -62,13 +62,13 @@
         display: none; 
       }       
       .owl-carousel{
-          height: 180px;
+          height: 150px;
       }
       .slider .slider-card{
-          height: 180px;
+          height: 150px;
       }
       .imgCarousel img{
-          height: 180px;
+          height: 150px;
       }
 }
 
