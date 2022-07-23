@@ -70,7 +70,7 @@ export default function Register() {
                 </Col>
                 <Col >
                     <div className="regist-right">
-                        <Link to={"/"} className="arrowregister" style={{ color: "black" }}>
+                        <Link to={"/login"} className="arrowregister" style={{ color: "black" }}>
                             <FiArrowLeft />
                         </Link>
                         <h1 className="mb-3">Daftar</h1>
