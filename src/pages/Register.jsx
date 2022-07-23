@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Form, Button, Alert, Row, Container, Col, } from "react-bootstrap";
 import axios from "axios";
+import { FiArrowLeft } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/style.css"
 import PICT1 from '../images/login.png';
@@ -69,9 +70,12 @@ export default function Register() {
                 </Col>
                 <Col >
                     <div className="regist-right">
+                        <Link to={"/"} className="arrowregister" style={{ color: "black" }}>
+                            <FiArrowLeft />
+                        </Link>
                         <h1 className="mb-3">Daftar</h1>
-                        <Form onSubmit={onRegister}>
-                            <Form.Group className="mb-3">
+                        <Form onSubmit={onRegister} className="">
+                            <Form.Group className="mb-3 formlogin">
                                 <Form.Label>Nama</Form.Label>
                                 <Form.Control
                                     type="text"

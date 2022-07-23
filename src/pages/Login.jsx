@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Form, Button, Alert, Row, Container, Col, } from "react-bootstrap";
 import axios from "axios";
+import { FiArrowLeft } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/style.css"
 import PICT1 from '../images/login.png';
@@ -12,7 +13,7 @@ export default function Login() {
         backgroundColor: '#7126B5',
         borderRadius: '10px',
     };
-    
+
     const styleLabel = {
         borderRadius: '10px',
     };
@@ -69,11 +70,15 @@ export default function Login() {
                 <Col className="login-left">
                     <img src={PICT1} alt="Second Hand" width="100%" height="100%" />
                 </Col>
+
                 <Col>
                     <div className="login-right">
+                        <Link to={"/"} className="arrowlogin" style={{ color: "black" }}>
+                            <FiArrowLeft />
+                        </Link>
                         <h1 className="mb-3">Masuk</h1>
-                        <Form onSubmit={onLogin}>
-                            <Form.Group className="mb-3">
+                        <Form onSubmit={onLogin} className="">
+                            <Form.Group className="mb-3 formlogin">
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
                                     type="text"
