@@ -84,7 +84,7 @@ export function Modal1() {
             }
 
             const acceptRequest = await axios.put(
-                `http://localhost:2000/v1/transactions/update/${id}`,
+                `https://binar-final-challenge-vespa-be.herokuapp.com/v1/transactions/update/${id}`,
                 acceptPayload,
                 {
                     headers: {
@@ -96,7 +96,7 @@ export function Modal1() {
 
             console.log(acceptResponse);
 
-            const response = await axios.get(`http://localhost:2000/v1/transactions/${id}`,
+            const response = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/transactions/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -133,7 +133,7 @@ export function Modal1() {
             }
 
             const acceptRequest = await axios.put(
-                `http://localhost:2000/v1/transaction/${id}`,
+                `https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/${id}`,
                 acceptPayload,
                 {
                     headers: {
@@ -145,7 +145,7 @@ export function Modal1() {
             const acceptResponse = acceptRequest.data.data;
             console.log(acceptResponse)
 
-            const response = await axios.get(`http://localhost:2000/v1/transaction/${id}`,
+            const response = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -174,7 +174,7 @@ export function Modal1() {
 
             const token = localStorage.getItem("token");
 
-            const response = await axios.get(`http://localhost:2000/v1/transaction/${id}`,
+            const response = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

@@ -75,7 +75,7 @@ export function HomeNavbar() {
     const getUsers = async () => {
         try {
             const token = localStorage.getItem("token");
-            const responseUsers = await axios.get(`http://localhost:2000/v1/users`,
+            const responseUsers = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/users`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -100,7 +100,7 @@ export function HomeNavbar() {
 
                 // 2. Check token validity from API
                 const currentUserRequest = await axios.get(
-                    "http://localhost:2000/v1/users",
+                    "https://binar-final-challenge-vespa-be.herokuapp.com/v1/users",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -141,7 +141,7 @@ export function HomeNavbar() {
                 const user_local = localStorage.getItem("user");
                 const user = JSON.parse(user_local);
 
-                const notifRequest = await axios.get(`http://localhost:2000/v1/transaction/notif/${user.id}`,
+                const notifRequest = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/notif/${user.id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

@@ -35,7 +35,7 @@ export function Product() {
         const getProductPublish = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:2000/v1/product/all?isPublished=true&&sold=false${categories}${searched}`
+                    `https://binar-final-challenge-vespa-be.herokuapp.com/v1/product/all?isPublished=true&&sold=false${categories}${searched}`
                 )
                 console.log(response)
                 const data = await response.data.data.result;
@@ -52,7 +52,7 @@ export function Product() {
                 const token = localStorage.getItem("token");
 
                 const currentUserRequest = await axios.get(
-                    "http://localhost:2000/v1/users",
+                    "https://binar-final-challenge-vespa-be.herokuapp.com/v1/users",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
