@@ -40,7 +40,7 @@ export default function InfoProduct() {
     const getProduct = async () => {
         try {
             const token = localStorage.getItem("token");
-            const responseProduct = await axios.get(`http://localhost:2000/v1/product/${id}`, {
+            const responseProduct = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/product/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -68,7 +68,7 @@ export default function InfoProduct() {
 
                 // 2. Check token validity from API
                 const currentUserRequest = await axios.get(
-                    "http://localhost:2000/v1/users",
+                    "https://binar-final-challenge-vespa-be.herokuapp.com/v1/users",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -105,7 +105,7 @@ export default function InfoProduct() {
             productToUpdatePayload.append("sold", sold);
 
             const createRequest = await axios.put(
-                `http://localhost:2000/v1/product/${id}`,
+                `https://binar-final-challenge-vespa-be.herokuapp.com/v1/product/${id}`,
                 productToUpdatePayload,
                 {
                     headers: {

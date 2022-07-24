@@ -26,7 +26,7 @@ export default function DaftarJual() {
 
         // 2. Check token validity from API
         const currentUserRequest = await axios.get(
-          "http://localhost:2000/v1/users",
+          "https://binar-final-challenge-vespa-be.herokuapp.com/v1/users",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ export default function DaftarJual() {
     const getProduct = async () => {
       try {
         const token = localStorage.getItem("token");
-        const responseProduct = await axios.get(`http://localhost:2000/v1/product/users/${id}`, {
+        const responseProduct = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/product/users/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
@@ -70,7 +70,7 @@ export default function DaftarJual() {
 
       const token = localStorage.getItem("token");
 
-      const response = await axios.get(`http://localhost:2000/v1/transaction/owners/${id}`,
+      const response = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/owners/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

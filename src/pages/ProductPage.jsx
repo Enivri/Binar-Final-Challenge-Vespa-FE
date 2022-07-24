@@ -60,7 +60,7 @@ function ProductPage() {
             postPayload.append("isPublished", isPublished);
 
             const createRequest = await axios.put(
-                `http://localhost:2000/v1/product/${id}`,
+                `https://binar-final-challenge-vespa-be.herokuapp.com/v1/product/${id}`,
                 postPayload,
                 {
                     headers: {
@@ -98,7 +98,7 @@ function ProductPage() {
             };
 
             const bidRequest = await axios.post(
-                "http://localhost:2000/v1/transaction",
+                "https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction",
                 bidPayload,
                 {
                     headers: {
@@ -131,7 +131,7 @@ function ProductPage() {
 
                 // 2. Check token validity from API
                 const currentUserRequest = await axios.get(
-                    "http://localhost:2000/v1/users",
+                    "https://binar-final-challenge-vespa-be.herokuapp.com/v1/users",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -159,7 +159,7 @@ function ProductPage() {
         const getProduct = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const responseProduct = await axios.get(`http://localhost:2000/v1/product/${id}`, {
+                const responseProduct = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/product/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     },

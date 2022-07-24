@@ -29,7 +29,7 @@ export default function Register() {
             };
 
             const registerRequest = await axios.post(
-                "http://localhost:2000/v1/register",
+                "https://binar-final-challenge-vespa-be.herokuapp.com/v1/register",
                 userToRegisterPayload
             );
 

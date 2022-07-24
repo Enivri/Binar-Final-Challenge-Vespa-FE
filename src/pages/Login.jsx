@@ -42,7 +42,7 @@ export default function Login() {
             };
 
             const loginRequest = await axios.post(
-                "http://localhost:2000/v1/login",
+                "https://binar-final-challenge-vespa-be.herokuapp.com/v1/login",
                 userToLoginPayload
             );
 

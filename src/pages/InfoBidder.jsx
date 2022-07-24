@@ -107,7 +107,7 @@ export default function InfoBidder() {
             }
 
             const acceptRequest = await axios.put(
-                `http://localhost:2000/v1/transaction/${id}`,
+                `https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/${id}`,
                 acceptPayload,
                 {
                     headers: {
@@ -119,7 +119,7 @@ export default function InfoBidder() {
 
             console.log(acceptResponse);
 
-            const response = await axios.get(`http://localhost:2000/v1/transaction/${id}`,
+            const response = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -152,7 +152,7 @@ export default function InfoBidder() {
 
                 // 2. Check token validity from API
                 const currentUserRequest = await axios.get(
-                    "http://localhost:2000/v1/users",
+                    "https://binar-final-challenge-vespa-be.herokuapp.com/v1/users",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -185,7 +185,7 @@ export default function InfoBidder() {
             }
 
             const acceptRequest = await axios.put(
-                `http://localhost:2000/v1/transaction/${id}`,
+                `https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/${id}`,
                 acceptPayload,
                 {
                     headers: {
@@ -197,7 +197,7 @@ export default function InfoBidder() {
             const acceptResponse = acceptRequest.data.data;
             console.log(acceptResponse)
 
-            const response = await axios.get(`http://localhost:2000/v1/transaction/${id}`,
+            const response = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -227,7 +227,7 @@ export default function InfoBidder() {
 
             const token = localStorage.getItem("token");
 
-            const response = await axios.get(`http://localhost:2000/v1/transaction/${id}`,
+            const response = await axios.get(`https://binar-final-challenge-vespa-be.herokuapp.com/v1/transaction/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

@@ -55,7 +55,7 @@ function ProductPageBuyer() {
 
                 // 2. Check token validity from API
                 const currentUserRequest = await axios.get(
-                    "http://localhost:2000/v1/users",
+                    "https://binar-final-challenge-vespa-be.herokuapp.com/v1/users",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
