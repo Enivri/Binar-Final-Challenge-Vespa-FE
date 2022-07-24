@@ -22,8 +22,14 @@ function ProductPageBuyer() {
 
     // Modal
     const [show, setShow] = useState(false);
+    const [show2, setShow2] = useState(false);
+
     const handleClose = () => setShow(false);
+    const handleClose2 = () => setShow2(false);
+
     const handleShow = () => setShow(true);
+    const handleShow2 = () => setShow2(true);
+
 
 
     const Button2 = {
@@ -132,45 +138,45 @@ function ProductPageBuyer() {
                                             Saya tertarik dan ingin nego
                                         </Button>
                                     </div>
-                                    <Modal className='modal' show={show} onHide={handleClose} animation={true} size="sm" centered >
-                                        <Modal.Header closeButton ></Modal.Header>
-                                        <Modal.Body >
-                                            <div>
-                                                <p className="titlefont1">Masukkan Harga Tawarmu</p>
-                                                <p className="greyfont" style={{ fontSize: "14px" }}>Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu akan segera dihubungi penjual.</p>
-                                            </div>
-                                            <div>
-                                                <Card style={modalStyle}>
-                                                    <div className='container'>
-                                                        <Row className='mb-3'>
-                                                            <Col xs={3} className='mt-4'>
-                                                                <img src={jamCasio} width="48px" height="48px" borderRadius='50px' />
-                                                            </Col>
-                                                            <Col>
-                                                                <div className='mt-4'>
-                                                                    <p className="titlefont1">Jam Tangan Casio</p>
-                                                                    <p className="greyfont">Rp 250.000</p>
-                                                                </div>
-                                                            </Col>
-                                                        </Row>
-                                                    </div>
-                                                </Card>
-
-                                                <div className='mt-3'>
-                                                    <Form>
-                                                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                                                            <Form.Label className='titlefont1'>Harga Tawar</Form.Label>
-                                                            <Form.Control type="email" placeholder="Rp 0,00" style={{ borderRadius: '10px' }} />
-
-                                                        </Form.Group>
-                                                    </Form>
-                                                    <Button className='btn center-block buttonWA' style={Button2} onClick={handleClose}>
-                                                        Kirim
-                                                    </Button>
+                                        <Modal show={show} onHide={handleClose} animation={true} size="sm" centered >
+                                            <Modal.Header closeButton ></Modal.Header>
+                                            <Modal.Body >
+                                                <div>
+                                                    <p className="titlefont1">Masukkan Harga Tawarmu</p>
+                                                    <p className="greyfont" style={{ fontSize: "14px" }}>Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu akan segera dihubungi penjual.</p>
                                                 </div>
-                                            </div>
-                                        </Modal.Body>
-                                    </Modal>
+                                                <div>
+                                                    <Card style={modalStyle}>
+                                                        <div className='container'>
+                                                            <Row className='mb-3'>
+                                                                <Col xs={3} className='mt-4'>
+                                                                    <img src={jamCasio} width="48px" height="48px" borderRadius='50px' />
+                                                                </Col>
+                                                                <Col>
+                                                                    <div className='mt-4'>
+                                                                        <p className="titlefont1">Jam Tangan Casio</p>
+                                                                        <p className="greyfont">Rp 250.000</p>
+                                                                    </div>
+                                                                </Col>
+                                                            </Row>
+                                                        </div>
+                                                    </Card>
+
+                                                    <div className='mt-3'>
+                                                        <Form>
+                                                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                                <Form.Label className='titlefont1'>Harga Tawar</Form.Label>
+                                                                <Form.Control type="email" placeholder="Rp 0,00" style={{ borderRadius: '10px' }} />
+
+                                                            </Form.Group>
+                                                        </Form>
+                                                        <Button className='btn center-block buttonWA' style={Button2} onClick={handleClose}>
+                                                            Kirim
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            </Modal.Body>
+                                        </Modal>
                                 </Card.Body>
 
                             </Card>
@@ -195,12 +201,12 @@ function ProductPageBuyer() {
 
 
             {/* screen 360 */}
-            <div>
+            <div className='smallScreen'>
                 <div >
                     <Button className="floating-button-back rounded-circle" variant='light'>
                         <FiArrowLeft style={{ fontSize: '18px' }} />
                     </Button>
-                    <Button className="floating-button-nego border-0" style={colourButton} onClick={handleShow}>
+                    <Button className="floating-button-nego border-0" style={colourButton} onClick={handleShow2}>
                         Saya tertarik dan ingin Nego
                     </Button>
                 </div>
@@ -267,7 +273,7 @@ function ProductPageBuyer() {
 
                 <div>
 
-                    <Modal show={show} onHide={handleClose} animation={false} centered >
+                    <Modal show={show2} onHide={handleClose2} animation={false} centered >
                         <div className="container fixed-bottom bg-light">
                             <Modal.Header closeButton ></Modal.Header>
                             <Modal.Body >
